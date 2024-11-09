@@ -19,7 +19,7 @@ const CircularProgress = ({ progress }) => {
           strokeWidth="12"
           fill="none"
         />
-        {/* Progress circle */}
+       
         <circle
           cx="96"
           cy="96"

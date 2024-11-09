@@ -7,6 +7,10 @@ import ParentRegistration from "./components/parent/ParentRegistartion";
 import "./index.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
+import KidsPage from "./pages/KidsPage";
+import AttendancePage from "./pages/AttandancePage";
+import FeeDetailsPage from "./pages/FeeDetailsPage";
+import ClassShedulePage from "./pages/ClassShedulePage";
 
 function App() {
   return (
@@ -26,7 +30,11 @@ function App() {
         </Routes>
 
         <Routes>
-          <Route path="/dashboard" element={<DashboardPage/>} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/kid1" element={<KidsPage />} />
+          <Route path="/attendance" element={<AttendancePage />} />
+          <Route path="/fees-details" element={<FeeDetailsPage />} />
+          <Route path="/class-shedule" element={<ClassShedulePage />} />
         </Routes>
       </Router>
     </>

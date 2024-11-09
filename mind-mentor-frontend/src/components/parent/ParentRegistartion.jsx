@@ -35,9 +35,7 @@ const ParentRegistration = () => {
       childName,
       isMobileWhatsapp,
     });
-    // Perform form submission logic here
-    // You can use a library like Axios to make an API call
-    // or integrate with your backend server
+
   };
 
   return (

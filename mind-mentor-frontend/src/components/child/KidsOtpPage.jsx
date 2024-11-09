@@ -36,7 +36,6 @@ const KidsOtpPage = () => {
     updatedOtp[index] = value;
     setOtp(updatedOtp);
 
-    // Move to the next input field automatically
     if (value && index < otp.length - 1) {
       otpRefs.current[index + 1].focus();
     }
@@ -45,7 +44,7 @@ const KidsOtpPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("OTP submitted:", otp.join(''));
-    // Pass the OTP to the backend here
+   
   };
 
   return (
@@ -92,12 +91,12 @@ const KidsOtpPage = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4 w-full">
-            {/* OTP Label */}
+           
             <div className="flex justify-start mb-2">
               <label className="text-sm font-medium text-gray-700">Enter OTP</label>
             </div>
 
-            {/* OTP Input Fields */}
+        
             <div className="flex justify-between space-x-2">
               {otp.map((digit, index) => (
                 <input
