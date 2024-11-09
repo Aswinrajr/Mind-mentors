@@ -6,6 +6,7 @@ import ParentOtpPage from "./components/parent/ParentOtpPage";
 import ParentRegistration from "./components/parent/ParentRegistartion";
 import "./index.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import DashboardPage from "./pages/DashboardPage";
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
           <Route path="/kids/otp" element={<KidsOtpPage />} />
 
           <Route path="/kids/register" element={<KidsRegistration />} />
+        </Routes>
+
+        <Routes>
+          <Route path="/dashboard" element={<DashboardPage/>} />
         </Routes>
       </Router>
     </>
