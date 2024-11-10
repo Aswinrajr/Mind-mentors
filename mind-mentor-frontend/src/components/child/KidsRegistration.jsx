@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { ArrowLeft, ChevronDown, Settings } from "lucide-react";
 import mindMentorImage from "../../assets/mindmentorz.png";
-import { useLocation } from "react-router-dom";
-import { parentBookDemoClass} from "../../api/service/parent/ParentService.js"
+import { useLocation ,useNavigate} from "react-router-dom";
+import { toast,ToastContainer } from "react-toastify";
+import { parentBookDemoClass } from "../../api/service/parent/parentService";
+
 
 const KidsRegistration = () => {
+  const navigate = useNavigate()
   const location =useLocation()
   const {state} = location
   console.log("state",state)
@@ -51,9 +54,16 @@ const KidsRegistration = () => {
 
     try {
      
-      console.log("Registration successful:", formData);
+      console.log("Registration successful:", formData,state);
       const response = await parentBookDemoClass(formData,state)
       console.log(response)
+      if(response.status===201){
+        toast.success(response.data.message)
+        setTimeout(() => {
+          navigate("/dashboard")
+          
+        }, 1500);
+      }
       
     } catch (error) {
       console.error("Error during registration:", error);
@@ -175,6 +185,15 @@ const KidsRegistration = () => {
           </form>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        pauseOnFocusLoss
+      />
     </div>
   );
 };

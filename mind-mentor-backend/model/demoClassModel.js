@@ -19,12 +19,12 @@ const demoClassSchema = new mongoose.Schema(
       type: String,
       required: true,  
     },
-    parent: {
+    parentId: {
       type: mongoose.Schema.Types.ObjectId, 
       ref: "Parent",
       required: true, 
     },
-    kid: {
+    kidId: {
       type: mongoose.Schema.Types.ObjectId,  
       ref: "Kid",
       required: true,

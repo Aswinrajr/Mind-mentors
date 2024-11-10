@@ -13,6 +13,7 @@ import FeeDetailsPage from "./pages/FeeDetailsPage";
 import ClassShedulePage from "./pages/ClassShedulePage";
 import 'react-toastify/dist/ReactToastify.css';
 import ParentKidsRegistration from "./components/parent/ParentKidsRegistarion";
+import LoginPage from "./employee-component/LoginPage";
 
 
 function App() {
@@ -33,10 +34,16 @@ function App() {
 
         {/* Other Routes */}
         <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/kid1" element={<KidsPage />} />
-        <Route path="/attendance" element={<AttendancePage />} />
-        <Route path="/fees-details" element={<FeeDetailsPage />} />
-        <Route path="/class-shedule" element={<ClassShedulePage />} />
+        <Route path="/kid1" element={<AttendancePage />} />
+        <Route path="/attendance" element={<KidsPage />} />
+        <Route path="/fee-details" element={<FeeDetailsPage />} />
+        <Route path="/class-schedule" element={<ClassShedulePage />} />
+
+
+
+        <Route path="/employee-login" element={<LoginPage />} />
+
+
       </Routes>
     </Router>
   );

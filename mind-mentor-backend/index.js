@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const { PORT } = require("./config/variables/variables");
 const dbConnect = require("./config/database/dbConnect")
 const parentRoute = require("./routes/parent/parentRoute")
+const operationRoute = require("./routes/employee/opertation-dept/operationDeptRoute")
 
 app.set("trust proxy", true);
 
@@ -36,6 +37,7 @@ app.disable("x-powered-by");
 
 
 app.use("/parent",parentRoute)
+app.use("/employee/operation",operationRoute)
 
 
 

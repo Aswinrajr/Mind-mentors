@@ -1,5 +1,7 @@
 const parentModel = require("../../model/parentModel");
 const kidModel = require("../../model/kidModel")
+const demoClassModel = require("../../model/demoClassModel")
+
 const generateChessId = require("../../utils/generateChessId");
 const generateOTP = require("../../utils/generateOtp");
 
@@ -162,14 +164,61 @@ const parentStudentRegistration = async (req, res) => {
 
 
 
-const parentBookDemoClass = async(req,res)=>{
-    try{
-        console.log("welcome to parent Book Demo Class",req.body)
+const parentBookDemoClass = async (req, res) => {
+    try {
+        console.log("Welcome to parent Book Demo Class", req.body);
 
-    }catch(err){
-        console.log("Error in parent Book Demo Class",err)
+        const { formData, state } = req.body;
+        const { parent, kid } = state;
+        console.log(".........................")
+        console.log(parent._id, kid._id)
+        console.log(".........................")
+
+
+ 
+        const demoClass = new demoClassModel({
+            program: formData.program,
+            programLevel: formData.programLevel,
+            date: formData.date,
+            time: formData.time,
+            parentId: parent._id, 
+            kidId: kid._id, 
+        });
+
+    
+        await demoClass.save();
+
+        console.log("democlass saved")
+
+        
+       
+
+
+        const updatedKid = await kidModel.findByIdAndUpdate(
+           {_id: kid._id}, 
+            kid,
+            { new: true } 
+        );
+
+       
+        res.status(201).json({
+            success: true,
+            message: "Demo class booked successfully, and chess ID updated.",
+            data: {
+                demoClass,
+                parent,
+                kid: updatedKid, 
+            },
+        });
+    } catch (err) {
+        console.error("Error in parent Book Demo Class", err);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error. Please try again later.",
+        });
     }
-}
+};
+
 
 
 

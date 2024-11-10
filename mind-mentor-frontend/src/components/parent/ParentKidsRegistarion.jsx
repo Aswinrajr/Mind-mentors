@@ -3,7 +3,7 @@ import { ArrowLeft, ChevronDown, Settings } from "lucide-react";
 import mindMentorImage from "../../assets/mindmentorz.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { parentKidsRegistration } from "../../api/service/parent/parentService";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const ParentKidsRegistration = () => {
     const navigate = useNavigate()
@@ -340,6 +340,15 @@ const ParentKidsRegistration = () => {
           </form>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        pauseOnFocusLoss
+      />
     </div>
   );
 };

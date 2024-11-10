@@ -36,7 +36,8 @@ export const parentKidsRegistration = async (formData,state) => {
 
 export const parentBookDemoClass = async (formData,state) => {
   try {
-    const response = await parentInstance.post(`/parent/parent-kids-registration`, {
+    console.log("parentBookDemoClass",formData,state)
+    const response = await parentInstance.post(`/parent/parent-book-demo-class`, {
       formData,state,
     });
     return response;
