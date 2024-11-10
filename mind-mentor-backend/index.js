@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser");
 
 const { PORT } = require("./config/variables/variables");
 const dbConnect = require("./config/database/dbConnect")
-// const userRoute = require("./routes/user/userRoute.js")
+const parentRoute = require("./routes/parent/parentRoute")
 
 app.set("trust proxy", true);
 
@@ -16,7 +16,7 @@ dbConnect()
 app.use(cookieParser());
 app.use(express.json());   
 
-const allowedOrigins = [];
+const allowedOrigins = ["http://localhost:5173"];
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -35,7 +35,7 @@ app.use(cors(corsOptions));
 app.disable("x-powered-by");
 
 
-// app.use("/",userRoute)
+app.use("/parent",parentRoute)
 
 
 

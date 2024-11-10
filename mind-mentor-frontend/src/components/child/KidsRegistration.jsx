@@ -1,10 +1,19 @@
 import { useState } from "react";
 import { ArrowLeft, ChevronDown, Settings } from "lucide-react";
 import mindMentorImage from "../../assets/mindmentorz.png";
+import { useLocation } from "react-router-dom";
+import { parentBookDemoClass} from "../../api/service/parent/ParentService.js"
 
 const KidsRegistration = () => {
+  const location =useLocation()
+  const {state} = location
+  console.log("state",state)
   const [language, setLanguage] = useState("English");
   const [theme, setTheme] = useState("sky");
+  const [program, setProgram] = useState("");
+  const [programLevel, setProgramLevel] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
 
   const themes = {
     sky: "bg-sky-600",
@@ -32,7 +41,24 @@ const KidsRegistration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-   
+ 
+    const formData = {
+      program,
+      programLevel,
+      date,
+      time,
+    };
+
+    try {
+     
+      console.log("Registration successful:", formData);
+      const response = await parentBookDemoClass(formData,state)
+      console.log(response)
+      
+    } catch (error) {
+      console.error("Error during registration:", error);
+    
+    }
   };
 
   return (
@@ -84,12 +110,14 @@ const KidsRegistration = () => {
                 <select
                   id="program"
                   className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent w-full"
+                  value={program}
+                  onChange={(e) => setProgram(e.target.value)}
                 >
-                  <option>Choose a program</option>
-                  <option>Chess</option>
-                  <option>Coding</option>
-                  <option>Rubiks Cube</option>
-                  <option>Robotics</option>
+                  <option value="">Choose a program</option>
+                  <option value="Chess">Chess</option>
+                  <option value="Coding">Coding</option>
+                  <option value="Rubiks Cube">Rubiks Cube</option>
+                  <option value="Robotics">Robotics</option>
                 </select>
               </div>
               <div>
@@ -99,11 +127,13 @@ const KidsRegistration = () => {
                 <select
                   id="program-level"
                   className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent w-full"
+                  value={programLevel}
+                  onChange={(e) => setProgramLevel(e.target.value)}
                 >
-                  <option>Choose a level</option>
-                  <option>Beginner</option>
-                  <option>Intermediate</option>
-                  <option>Advanced</option>
+                  <option value="">Choose a level</option>
+                  <option value="Beginner">Beginner</option>
+                  <option value="Intermediate">Intermediate</option>
+                  <option value="Advanced">Advanced</option>
                 </select>
               </div>
             </div>
@@ -119,7 +149,8 @@ const KidsRegistration = () => {
                     type="date"
                     id="date"
                     className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                    placeholder="Select a date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
                   />
                 </div>
                 <div className="flex flex-col">
@@ -128,7 +159,8 @@ const KidsRegistration = () => {
                     type="time"
                     id="time"
                     className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                    placeholder="Select a time"
+                    value={time}
+                    onChange={(e) => setTime(e.target.value)}
                   />
                 </div>
               </div>

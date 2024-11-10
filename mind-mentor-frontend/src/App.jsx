@@ -11,33 +11,34 @@ import KidsPage from "./pages/KidsPage";
 import AttendancePage from "./pages/AttandancePage";
 import FeeDetailsPage from "./pages/FeeDetailsPage";
 import ClassShedulePage from "./pages/ClassShedulePage";
+import 'react-toastify/dist/ReactToastify.css';
+import ParentKidsRegistration from "./components/parent/ParentKidsRegistarion";
+
 
 function App() {
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/parent/login" element={<ParentLogin />} />
-          <Route path="/parent/enter-otp" element={<ParentOtpPage />} />
-          <Route path="/parent/registration" element={<ParentRegistration />} />
-        </Routes>
+    <Router>
+      <Routes>
+        {/* Parent Routes */}
+        <Route path="/parent/login" element={<ParentLogin />} />
+        <Route path="/parent/enter-otp" element={<ParentOtpPage />} />
+        <Route path="/parent/registration" element={<ParentRegistration />} />
+        <Route path="/parent/parent-kids-registration" element={<ParentKidsRegistration />} />
 
-        <Routes>
-          <Route path="/kids/login" element={<KidsLoginPage />} />
-          <Route path="/kids/otp" element={<KidsOtpPage />} />
 
-          <Route path="/kids/register" element={<KidsRegistration />} />
-        </Routes>
+        {/* Kids Routes */}
+        <Route path="/kids/login" element={<KidsLoginPage />} />
+        <Route path="/kids/otp" element={<KidsOtpPage />} />
+        <Route path="/kids/demo" element={<KidsRegistration />} />
 
-        <Routes>
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/kid1" element={<KidsPage />} />
-          <Route path="/attendance" element={<AttendancePage />} />
-          <Route path="/fees-details" element={<FeeDetailsPage />} />
-          <Route path="/class-shedule" element={<ClassShedulePage />} />
-        </Routes>
-      </Router>
-    </>
+        {/* Other Routes */}
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/kid1" element={<KidsPage />} />
+        <Route path="/attendance" element={<AttendancePage />} />
+        <Route path="/fees-details" element={<FeeDetailsPage />} />
+        <Route path="/class-shedule" element={<ClassShedulePage />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -1,8 +1,14 @@
 import  { useState, useRef } from 'react';
 import { ArrowLeft, ChevronDown, Settings } from 'lucide-react';
 import mindMentorImage from "../../assets/mindmentorz.png";
+import { useLocation, useNavigate } from 'react-router-dom';
+import { verifyOtp } from '../../api/service/parent/parentService';
+import { toast, ToastContainer } from 'react-toastify';
 
 const ParentOtpPage = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const {state} = location
   const [otp, setOtp] = useState(['', '', '', '']);
   const [language, setLanguage] = useState("English");
   const [theme, setTheme] = useState("purple");
@@ -44,9 +50,29 @@ const ParentOtpPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("OTP submitted:", otp.join(''));
-   
+  
+    try {
+      const otpResponse = await verifyOtp(otp);
+  
+      if (otpResponse.status === 200) {
+        toast.success(otpResponse?.data?.message);
+  
+        setTimeout(() => {
+          if (state.type === "exist") {
+            navigate("/dashboard");
+          } else {
+            navigate("/parent/registration");
+          }
+        }, 1500);
+      } else {
+        toast.error("Failed to verify OTP. Please try again.");
+      }
+    } catch (err) {
+      console.error("Error in verify OTP", err);
+      toast.error("An error occurred. Please try again later.");
+    }
   };
+  
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen">
@@ -122,6 +148,15 @@ const ParentOtpPage = () => {
           </form>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        pauseOnFocusLoss
+      />
     </div>
   );
 };

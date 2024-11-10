@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { ArrowLeft, ChevronDown, Settings } from "lucide-react";
 import mindMentorImage from "../../assets/mindmentorz.png";
+import { useNavigate } from "react-router-dom";
 
 const ParentRegistration = () => {
+  const navigate = useNavigate()
   const [mobile, setMobile] = useState("");
   const [isMobileWhatsapp, setIsMobileWhatsapp] = useState(false);
   const [email, setEmail] = useState("");
@@ -35,6 +37,16 @@ const ParentRegistration = () => {
       childName,
       isMobileWhatsapp,
     });
+    const data = {
+      mobile,
+      email,
+      name,
+      childName,
+      isMobileWhatsapp,
+
+    }
+    navigate("/parent/parent-kids-registration",{state:data})
+    
 
   };
 
@@ -107,6 +119,7 @@ const ParentRegistration = () => {
                 onChange={(e) => setMobile(e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-md"
                 placeholder="Enter your whatsapp number"
+                maxLength={10}
               />
               <p className="text-xs text-purple-600 mt-1">
                 Will also be used for class notifications and to avoid calls

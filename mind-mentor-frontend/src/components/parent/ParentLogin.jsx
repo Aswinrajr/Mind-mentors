@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { ArrowLeft, ChevronDown, Settings, ArrowRight } from "lucide-react";
 import mindMentorImage from "../../assets/mindmentorz.png";
+import { validateForm } from "../../utils/Validation";
+import { ToastContainer, toast } from "react-toastify";
+import { parentLogin } from "../../api/service/parent/parentService";
+import { useNavigate } from "react-router-dom";
 
 const ParentLogin = () => {
+  const navigate =useNavigate()
   const [mobile, setMobile] = useState("");
   const [language, setLanguage] = useState("English");
   const [theme, setTheme] = useState("sky");
@@ -32,7 +37,25 @@ const ParentLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login submitted", { mobile });
+    const errors = validateForm(mobile);
+
+    if (errors?.mobileNumber) {
+      toast.error(errors.mobileNumber); 
+    } else {
+      console.log("Login submitted", { mobile });
+      const parentLoginReponse = await parentLogin(mobile)
+      if (parentLoginReponse.status === 200 || parentLoginReponse.status === 201) {
+
+        toast.success(parentLoginReponse?.data?.message);
+      
+        setTimeout(() => {
+          navigate("/parent/enter-otp", {
+            state: parentLoginReponse?.data
+          });
+        }, 1500);
+      }
+      
+    }
   };
 
   return (
@@ -92,6 +115,7 @@ const ParentLogin = () => {
                 placeholder="Mobile Number"
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}
+                maxLength={10}
                 required
               />
             </div>
@@ -114,6 +138,15 @@ const ParentLogin = () => {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        pauseOnFocusLoss
+      />
     </div>
   );
 };
