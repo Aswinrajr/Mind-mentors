@@ -1,45 +1,44 @@
-import  { useState } from "react";
-import { employeeEmailVerification, operationPasswordVerification } from "../api/service/employee/employeeService";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import {employeeEmailVerification,operationPasswordVerification} from "../api/service/employee/EmployeeService"
 
 const LoginPage = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-
-  const handleEmailSubmit = async(e) => {
+  const handleEmailSubmit = async (e) => {
     e.preventDefault();
-    const existEmployee = await employeeEmailVerification(email)
-    console.log(existEmployee)
-    if(existEmployee.status===200){
-        setStep(2); 
-
+    const existEmployee = await employeeEmailVerification(email);
+    console.log(existEmployee);
+    if (existEmployee.status === 200) {
+      setStep(2);
     }
   };
 
-  const handlePasswordSubmit = async(e) => {
+  const handlePasswordSubmit = async (e) => {
     e.preventDefault();
 
     console.log("Logging in with", email, password);
-    try{
-        console.log("Welcome to opertaopn dept")
-        const response = await operationPasswordVerification(email,password)
-        console.log(response)
-        if(response.status===200){
-            toast.success(response?.data?.message)
-            localStorage.setItem("email",response?.data?.email||"operationdept@gmail.com")
-            setTimeout(() => {
-                navigate("/employee-operation-dashboard")
-                
-            }, 1500);
-        }
-
-    }catch(err){
-        console.log("Error in opertaion dept login ",err)
+    try {
+      console.log("Welcome to opertaopn dept");
+      const response = await operationPasswordVerification(email, password);
+      console.log(response);
+      if (response.status === 200) {
+        toast.success(response?.data?.message);
+        localStorage.setItem(
+          "email",
+          response?.data?.email || "operationdept@gmail.com"
+        );
+        setTimeout(() => {
+          navigate("/employee-operation-dashboard");
+        }, 1500);
+      }
+    } catch (err) {
+      console.log("Error in opertaion dept login ", err);
     }
   };
 
@@ -84,10 +83,7 @@ const LoginPage = () => {
               </div>
               <div className="text-sm text-gray-600">
                 Dont have an account?{" "}
-                <a
-                  href="#"
-                  className="text-blue-600 hover:text-blue-800"
-                >
+                <a href="#" className="text-blue-600 hover:text-blue-800">
                   Sign Up
                 </a>
               </div>
@@ -127,10 +123,7 @@ const LoginPage = () => {
               </div>
               <div className="text-sm text-gray-600">
                 Dont have an account?{" "}
-                <a
-                  href="#"
-                  className="text-blue-600 hover:text-blue-800"
-                >
+                <a href="#" className="text-blue-600 hover:text-blue-800">
                   Sign Up
                 </a>
               </div>
