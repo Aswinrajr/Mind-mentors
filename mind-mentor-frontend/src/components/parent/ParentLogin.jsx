@@ -3,8 +3,8 @@ import { ArrowLeft, ChevronDown, Settings, ArrowRight } from "lucide-react";
 import mindMentorImage from "../../assets/mindmentorz.png";
 import { validateForm } from "../../utils/Validation";
 import { ToastContainer, toast } from "react-toastify";
-import { parentLogin } from "../../api/service/parent/parentService";
 import { useNavigate } from "react-router-dom";
+import { parentLogin } from "../../api/service/parent/ParentService";
 
 const ParentLogin = () => {
   const navigate =useNavigate()

@@ -2,8 +2,8 @@ import { useState } from "react";
 import { ArrowLeft, ChevronDown, Settings } from "lucide-react";
 import mindMentorImage from "../../assets/mindmentorz.png";
 import { useLocation, useNavigate } from "react-router-dom";
-import { parentKidsRegistration } from "../../api/service/parent/parentService.js";
 import { toast, ToastContainer } from "react-toastify";
+import { parentKidsRegistration } from "../../api/service/parent/ParentService";
 
 const ParentKidsRegistration = () => {
     const navigate = useNavigate()

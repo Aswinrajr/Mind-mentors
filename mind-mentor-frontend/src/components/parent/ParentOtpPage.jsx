@@ -2,8 +2,8 @@ import  { useState, useRef } from 'react';
 import { ArrowLeft, ChevronDown, Settings } from 'lucide-react';
 import mindMentorImage from "../../assets/mindmentorz.png";
 import { useLocation, useNavigate } from 'react-router-dom';
-import { verifyOtp } from '../../api/service/parent/parentService';
 import { toast, ToastContainer } from 'react-toastify';
+import { verifyOtp } from '../../api/service/parent/ParentService';
 
 const ParentOtpPage = () => {
   const navigate = useNavigate()
