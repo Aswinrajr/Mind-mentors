@@ -3,7 +3,7 @@ import { ArrowLeft, ChevronDown, Settings } from "lucide-react";
 import mindMentorImage from "../../assets/mindmentorz.png";
 import { useLocation ,useNavigate} from "react-router-dom";
 import { toast,ToastContainer } from "react-toastify";
-import { parentBookDemoClass } from "../../api/service/parent/parentService.js";
+import {parentBookDemoClass} from "../../api/service/parent/parentService"
 
 
 const KidsRegistration = () => {
