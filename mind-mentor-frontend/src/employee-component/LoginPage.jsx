@@ -33,7 +33,7 @@ const LoginPage = () => {
             toast.success(response?.data?.message)
             localStorage.setItem("email",response?.data?.email||"operationdept@gmail.com")
             setTimeout(() => {
-                navigate("/employee/operation-dashboard")
+                navigate("/employee-operation-dashboard")
                 
             }, 1500);
         }

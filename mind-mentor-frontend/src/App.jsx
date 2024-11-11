@@ -14,6 +14,8 @@ import ClassShedulePage from "./pages/ClassShedulePage";
 import 'react-toastify/dist/ReactToastify.css';
 import ParentKidsRegistration from "./components/parent/ParentKidsRegistarion";
 import LoginPage from "./employee-component/LoginPage";
+import OperationDashboardPage from "./pages/employee/operation-employee/OperationDashboardPage";
+import SEnquiryFormPage from "./pages/employee/operation-employee/SEnquiryFormPage";
 
 
 function App() {
@@ -42,6 +44,10 @@ function App() {
 
 
         <Route path="/employee-login" element={<LoginPage />} />
+        <Route path="/employee-operation-dashboard" element={<OperationDashboardPage />} />
+        <Route path="/employee-operation-enquiry-form" element={<SEnquiryFormPage />} />
+
+
 
 
       </Routes>

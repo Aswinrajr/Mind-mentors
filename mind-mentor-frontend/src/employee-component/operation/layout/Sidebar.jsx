@@ -1,123 +1,229 @@
+/* eslint-disable react/prop-types */
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
+const TextSlider = ({ text, className }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const containerWidth = 200; // Adjust based on your sidebar width
+  const textWidth = text.length * 8;
+  const shouldSlide = textWidth > containerWidth;
+
+  return (
+    <div 
+      className={`overflow-hidden ${className}`}
+      style={{ width: containerWidth }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div
+        className={`whitespace-nowrap transition-transform duration-[2000ms] ease-linear`}
+        style={{
+          transform: isHovered && shouldSlide ? `translateX(-${textWidth - containerWidth}px)` : 'translateX(0)',
+        }}
+      >
+        {text}
+      </div>
+    </div>
+  );
+};
 
 const Sidebar = () => {
+  const location = useLocation();
+  const [openSubmenu, setOpenSubmenu] = useState(null);
+
+  const menuItems = [
+    { 
+      title: 'Dashboard', 
+      icon: '📊', 
+      path: '/dashboard'
+    },
+    { 
+      title: 'CRM', 
+      icon: '💼', 
+      path: '/crm',
+      submenu: [
+        { 
+          title: 'S_Enquiry Form', 
+          icon: '📝', 
+          path: '/crm/enquiry-form' 
+        },
+        { 
+          title: 'Enquiries', 
+          icon: '📋', 
+          path: '/crm/enquiries' 
+        },
+        { 
+          title: 'Prospects', 
+          icon: '👥', 
+          path: '/crm/prospects' 
+        },
+        { 
+          title: 'Refer a Friend Report', 
+          icon: '📢', 
+          path: '/crm/refer-friend' 
+        },
+      ]
+    },
+    { 
+      title: 'Tasks', 
+      icon: '✓', 
+      path: '/tasks',
+      submenu: [
+        { 
+          title: 'My Tasks',
+          icon: '📋',
+          path: '/tasks/my-tasks' 
+        },
+        { 
+          title: 'Task assigned by me',
+          icon: '👥',
+          path: '/tasks/team-assign' 
+        },
+      ]
+    },
+    { 
+      title: 'Invoices', 
+      icon: '📄', 
+      path: '/invoices' 
+    },
+    { 
+      title: 'Other Programs', 
+      icon: '🔄', 
+      path: '/programs' 
+    },
+    { 
+      title: 'Class Schedule', 
+      icon: '📅', 
+      path: '/schedule',
+      submenu: [
+        { 
+          title: 'View all the class schedule',
+          icon: '👁️',
+          path: '/all-class-shedule' 
+        },
+        { 
+          title: 'Available slot',
+          icon: '📅',
+          path: '/vailable-slot' 
+        },
+      ]
+    },
+    { 
+      title: 'Support', 
+      icon: '🔧', 
+      path: '/support',
+      submenu: [
+        { 
+          title: 'My system admin support request',
+          icon: '🔧',
+          path: '/support/system-admin' 
+        },
+        { 
+          title: 'MyKart status checker',
+          icon: '📊',
+          path: '/support/my-kart' 
+        },
+      ]
+    }
+  ];
+
+  const toggleSubmenu = (index) => {
+    setOpenSubmenu(openSubmenu === index ? null : index);
+  };
+
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
+
+  const isSubmenuActive = (submenu) => {
+    return submenu?.some(item => location.pathname === item.path);
+  };
+
   return (
-    <div className="w-64 min-h-screen bg-gray-800 text-gray-300 py-4">
-  
-      <div className="px-4 py-2 text-sm font-medium border-b border-gray-700">
-        Copy of FMM Virtual Aca...
+    <div className="h-full bg-[#2F3542] text-white">
+      <div className="p-4 bg-[#2F3542] border-b border-gray-700">
+        <TextSlider 
+          text="Copy of FMM Virtual Academy" 
+          className="text-lg font-semibold"
+        />
       </div>
 
-    
-      <nav className="mt-4">
-        <div className="space-y-1">
-     
-          <a href="#" className="flex items-center px-4 py-2 hover:bg-gray-700">
-            <svg className="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-            Dashboard
-          </a>
-
-          <div>
-            <button className="w-full flex items-center justify-between px-4 py-2 hover:bg-gray-700">
-              <div className="flex items-center">
-                <svg className="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-                CRM
-              </div>
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-         
-            <div className="pl-12 space-y-1">
-              <a href="#" className="block py-2 px-4 bg-emerald-500 text-white">
-                S_Enquiry Form
-              </a>
-              <a href="#" className="block py-2 px-4 hover:bg-gray-700">
-                Enquiries
-              </a>
-              <a href="#" className="block py-2 px-4 hover:bg-gray-700">
-                Prospects
-              </a>
-              <a href="#" className="block py-2 px-4 hover:bg-gray-700">
-                Refer a Friend Report
-              </a>
+      <nav className="mt-2 overflow-y-auto" style={{ height: 'calc(100vh - 160px)' }}>
+        {menuItems.map((item, index) => (
+          <div key={index}>
+            <div
+              onClick={() => item.submenu && toggleSubmenu(index)}
+              className={`flex items-center px-4 py-3 text-sm cursor-pointer
+                hover:bg-gray-700 transition-colors
+                ${isActive(item.path) || isSubmenuActive(item.submenu) ? 'bg-emerald-600' : ''}`}
+            >
+              <span className="mr-3 w-5 text-center">{item.icon}</span>
+              {item.submenu ? (
+                <TextSlider text={item.title} className="flex-grow" />
+              ) : (
+                <Link to={item.path} className="flex-grow">
+                  <TextSlider text={item.title} />
+                </Link>
+              )}
+              {item.submenu && (
+                <span className="ml-auto">
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-200 
+                      ${openSubmenu === index ? 'rotate-90' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </span>
+              )}
             </div>
-          </div>
-
-      
-          <div>
-            <button className="w-full flex items-center justify-between px-4 py-2 hover:bg-gray-700">
-              <div className="flex items-center">
-                <svg className="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
-                Tasks
+            
+            {item.submenu && openSubmenu === index && (
+              <div className="bg-gray-800">
+                {item.submenu.map((subItem, subIndex) => (
+                  <Link
+                    key={subIndex}
+                    to={subItem.path}
+                    className={`flex items-center pl-12 pr-4 py-2 text-sm
+                      hover:bg-gray-700 transition-colors
+                      ${isActive(subItem.path) ? 'bg-gray-700 text-emerald-400' : ''}`}
+                  >
+                    <span className="mr-3 w-5 text-center">{subItem.icon}</span>
+                    <TextSlider text={subItem.title} className="flex-grow" />
+                  </Link>
+                ))}
               </div>
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
+            )}
           </div>
-
-       
-          <a href="#" className="flex items-center px-4 py-2 hover:bg-gray-700">
-            <svg className="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            Invoices
-          </a>
-
-        
-          <a href="#" className="flex items-center px-4 py-2 hover:bg-gray-700">
-            <svg className="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-            </svg>
-            Other Programs
-          </a>
-
-    
-          <div>
-            <button className="w-full flex items-center justify-between px-4 py-2 hover:bg-gray-700">
-              <div className="flex items-center">
-                <svg className="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                Class Schedule
-              </div>
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Support */}
-          <div>
-            <button className="w-full flex items-center justify-between px-4 py-2 hover:bg-gray-700">
-              <div className="flex items-center">
-                <svg className="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-                Support
-              </div>
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-          </div>
-        </div>
+        ))}
       </nav>
 
-      {/* User Profile */}
-      <div className="absolute bottom-0 w-64 border-t border-gray-700">
-        <div className="flex items-center px-4 py-3 hover:bg-gray-700">
-          <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center text-sm mr-3">
-            O
-          </div>
-          <div className="text-sm">operations</div>
+      <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700 bg-[#2F3542]">
+        <div className="flex items-center">
+          <div className="w-8 h-8 rounded-full bg-gray-500 mr-3"></div>
+          <span className="text-sm">operations</span>
+          <span className="ml-auto">
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+              />
+            </svg>
+          </span>
         </div>
       </div>
     </div>
