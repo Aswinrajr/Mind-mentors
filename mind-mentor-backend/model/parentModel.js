@@ -34,7 +34,8 @@ const parentSchema = new mongoose.Schema(
       default: "Active"
     },
     type:{
-        type:String
+        type:String,
+        default:"new"
 
     }
   },
