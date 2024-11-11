@@ -9,6 +9,7 @@ const ParentOtpPage = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const {state} = location
+  console.log(state)
   const [otp, setOtp] = useState(['', '', '', '']);
   const [language, setLanguage] = useState("English");
   const [theme, setTheme] = useState("purple");
@@ -53,12 +54,14 @@ const ParentOtpPage = () => {
   
     try {
       const otpResponse = await verifyOtp(otp);
+      console.log("otpResponse",otpResponse)
   
       if (otpResponse.status === 200) {
         toast.success(otpResponse?.data?.message);
   
         setTimeout(() => {
-          if (state.type === "exist") {
+          if (state?.data?.type === "exist") {
+            localStorage.setItem("parentId",otpResponse?.data?.parentData?._id)
             navigate("/dashboard");
           } else {
             navigate("/parent/registration");

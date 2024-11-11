@@ -10,7 +10,6 @@ const KidsRegistration = () => {
   const navigate = useNavigate()
   const location =useLocation()
   const {state} = location
-  console.log("state",state)
   const [language, setLanguage] = useState("English");
   const [theme, setTheme] = useState("sky");
   const [program, setProgram] = useState("");
@@ -59,6 +58,7 @@ const KidsRegistration = () => {
       console.log(response)
       if(response.status===201){
         toast.success(response.data.message)
+        localStorage.setItem("data",response?.data?.data)
         setTimeout(() => {
           navigate("/dashboard")
           
