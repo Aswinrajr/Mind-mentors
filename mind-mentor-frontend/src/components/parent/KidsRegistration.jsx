@@ -146,7 +146,7 @@ const KidsRegistration = () => {
                   <button
                     type="button"
                     onClick={() => handleRemoveProgram(enrollment.id)}
-                    className="absolute -right-8 top-10 text-red-500 hover:text-red-700"
+                    className="absolute -right-8 top-10 text-red-500 hover:text-red-700 mr-1"
                   >
                     <Trash2 size={20} />
                   </button>
