@@ -73,7 +73,7 @@ const KidsRegistration = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen">
+    <div className="flex flex-col lg:flex-row min-h-screen m-3">
       <div className="bg-[#b115b1] text-white lg:w-2/5 p-8 flex flex-col justify-between relative">
         <div className="flex-grow flex flex-col justify-center">
           <h2 className="text-4xl font-bold leading-tight mb-4">Welcome to</h2>
