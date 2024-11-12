@@ -10,28 +10,20 @@ const kidSchema = new mongoose.Schema(
       type: Number,
     },
 
-    firstName: {
+    kidName: {
       type: String,
 
       trim: true,
     },
-    lastName: {
-      type: String,
 
-      trim: true,
-    },
     age: {
       type: Number,
     },
     gender: {
       type: String,
     },
-    programs: {
-      type: [String],
-    },
-    chessLevel: {
-      type: String,
-    },
+
+
     intention: {
       type: String,
 

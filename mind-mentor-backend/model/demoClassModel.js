@@ -1,31 +1,34 @@
 const mongoose = require("mongoose");
 
-
 const demoClassSchema = new mongoose.Schema(
   {
-    program: {
-      type: String,
-      required: true,  // Ensure the program is required
-    },
-    programLevel: {
-      type: String,
-      required: true,  
-    },
+    programs: [
+      {
+        program: {
+          type: String,
+        
+        },
+        programLevel: {
+          type: String,
+         
+        }
+      }
+    ],
     date: {
       type: Date,
-      required: true, 
+    
     },
     time: {
       type: String,
-      required: true,  
+     
     },
     parentId: {
-      type: mongoose.Schema.Types.ObjectId, 
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Parent",
-      required: true, 
+      required: true,
     },
     kidId: {
-      type: mongoose.Schema.Types.ObjectId,  
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Kid",
       required: true,
     },
@@ -33,6 +36,7 @@ const demoClassSchema = new mongoose.Schema(
   { timestamps: true } 
 );
 
-const DemoClass = mongoose.model("DemoClass", demoClassSchema);
+
+const DemoClass = mongoose.model("DemoClass", demoClassSchema)
 
 module.exports = DemoClass;

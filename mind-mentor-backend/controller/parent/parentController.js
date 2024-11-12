@@ -17,7 +17,7 @@ const parentLogin = async (req, res) => {
     req.app.locals.mobile = mobile;
     req.app.locals.otpExpiry = Date.now() + 5 * 60 * 1000;
 
-    const parentExist = await parentModel.findOne({ parentMobile: mobile });
+    const parentExist = await parentModel.findOne({ parentMobile: mobile});
 
     if (parentExist) {
       res.status(200).json({
@@ -27,7 +27,7 @@ const parentLogin = async (req, res) => {
         otp,
         data: {
           parentId: parentExist._id,
-          type: "exist",
+          type:parentExist?.type,
         },
       });
     } else {
@@ -45,7 +45,7 @@ const parentLogin = async (req, res) => {
         otp,
         data: {
           parentId: newParent._id,
-          type: "new",
+          type: newParent.type,
         },
       });
     }
@@ -57,6 +57,8 @@ const parentLogin = async (req, res) => {
     });
   }
 };
+
+
 const parentVerifyOtp = async (req, res) => {
   try {
     const { otp } = req.body;
@@ -110,15 +112,16 @@ const parentStudentRegistration = async (req, res) => {
     let parentData = await parentModel.findOne({ parentMobile: state.mobile });
 
     const newKid = new kidModel({
-      firstName: formData.firstName,
-      lastName: formData.lastName,
+      kidsName: formData.kidsName,
+    
       age: formData.age,
       gender: formData.gender,
-      programs: formData.programs,
-      chessLevel: formData.chessLevel,
+    
+     
       intention: formData.intention,
       schoolName: formData.schoolName,
       address: formData.address,
+      pincode:formData.pincode,
       parentId: parentData ? parentData._id : null,
       chessId: chessId,
       kidPin,
@@ -168,17 +171,25 @@ const parentStudentRegistration = async (req, res) => {
 
 const parentBookDemoClass = async (req, res) => {
   try {
-    console.log("Welcome to parent Book Demo Class", req.body);
+    console.log("Welcome to demo class booking", req.body);
 
     const { formData, state } = req.body;
     const { parent, kid } = state;
-    console.log(".........................");
-    console.log(parent._id, kid._id);
-    console.log(".........................");
 
+
+    formData.programs.map((data)=>{
+      console.log(data)
+    })
+
+  
+    console.log("Parent ID:", parent._id, "Kid ID:", kid._id);
+
+   
     const demoClass = new demoClassModel({
-      program: formData.program,
-      programLevel: formData.programLevel,
+      programs: formData.programs.map((programObj) => ({
+        program: programObj.program,         
+        programLevel: programObj.programLevel 
+      })),
       date: formData.date,
       time: formData.time,
       parentId: parent._id,
@@ -188,22 +199,49 @@ const parentBookDemoClass = async (req, res) => {
     await demoClass.save();
     console.log("Demo class saved");
 
-    const parentSetData = await parentModel.findByIdAndUpdate(parent._id, {
+    // Updating the parent's type to "exist"
+    await parentModel.findByIdAndUpdate(parent._id, {
       type: "exist",
     });
 
-    const updatedKid = await kidModel.findByIdAndUpdate({ _id: kid._id }, kid, {
-      new: true,
-    });
+    // Updating kid data if necessary
+    const updatedKid = await kidModel.findByIdAndUpdate(
+      { _id: kid._id },
+      kid,
+      { new: true }
+    );
 
     res.status(201).json({
       success: true,
       message: "Demo class booked successfully, and chess ID updated.",
-
       parentId: parent._id,
     });
   } catch (err) {
     console.error("Error in parent Book Demo Class", err);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error. Please try again later.",
+    });
+  }
+};
+
+
+
+const getKidsDataList = async (req, res) => {
+  try {
+    console.log("Welcome to list the kids data", req.params);
+
+    const kidsData = await kidModel.find({ parentId: req.params.id });
+
+
+    res.status(200).json({
+      success: true,
+      message: "Kids data retrieved successfully.",
+       kidsData,
+    });
+  } catch (err) {
+    console.error("Error in listing the kids data", err);
+
     res.status(500).json({
       success: false,
       message: "Internal server error. Please try again later.",
@@ -216,4 +254,5 @@ module.exports = {
   parentVerifyOtp,
   parentStudentRegistration,
   parentBookDemoClass,
+  getKidsDataList,
 };

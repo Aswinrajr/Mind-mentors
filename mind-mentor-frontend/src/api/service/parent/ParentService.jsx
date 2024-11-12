@@ -45,3 +45,13 @@ export const parentBookDemoClass = async (formData,state) => {
     return err;
   }
 };
+
+export const gettingKidsData = async (parentId) => {
+  try {
+  
+    const response = await parentInstance.get(`/parent/get-kids-data/${parentId}`);
+    return response;
+  } catch (err) {
+    return err;
+  }
+};

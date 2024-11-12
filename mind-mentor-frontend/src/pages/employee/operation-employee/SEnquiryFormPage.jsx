@@ -1,5 +1,6 @@
-import SEnquiryForm from "../../../employee-component/operation/dashboard/SEnquiryForm";
-import Sidebar from "../../../employee-component/operation/layout/Sidebar";
+import NewEnquiryForm from "../../../employee-component/operation-new/dashboard/NewEnquiryForm";
+import Sidebar from "../../../employee-component/operation-new/layout/Sidebar";
+
 
 const SEnquiryFormPage = () => {
   return (
@@ -10,7 +11,7 @@ const SEnquiryFormPage = () => {
 
       {/* Add a flex-grow class to make the enquiry form take the full width */}
       <div className="flex-grow p-6">
-        <SEnquiryForm />
+        <NewEnquiryForm/>
       </div>
     </div>
   );

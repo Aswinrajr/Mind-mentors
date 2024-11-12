@@ -9,12 +9,12 @@ const parentSchema = new mongoose.Schema(
     parentEmail: {
       type: String,   
       lowercase: true,
-      unique: true,
+      // unique: true,
       trim: true,
     },
     parentMobile: {
       type: Number,
-      unique: true,
+      // unique: true,
       trim: true,
     },
     parentPin: {

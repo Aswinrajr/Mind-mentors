@@ -2,7 +2,7 @@ import { Mail } from 'lucide-react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
-const SEnquiryForm = () => {
+const NewEnquiryForm = () => {
   return (
     <div className="p-8 w-full mx-auto bg-white shadow-lg rounded-lg">
       <h2 className="text-2xl font-semibold mb-6 text-gray-800">Enquiry Form</h2>
@@ -166,4 +166,4 @@ const SEnquiryForm = () => {
   );
 };
 
-export default SEnquiryForm;
+export default NewEnquiryForm;

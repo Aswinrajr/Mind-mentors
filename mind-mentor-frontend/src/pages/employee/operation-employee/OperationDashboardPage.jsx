@@ -1,6 +1,7 @@
 
-import Dashboard from "../../../employee-component/operation/dashboard/Dashboard";
-import Sidebar from "../../../employee-component/operation/layout/Sidebar";
+import Dashboard from "../../../employee-component/operation-new/dashboard/Dashboard";
+import Sidebar from "../../../employee-component/operation-new/layout/Sidebar";
+
 
 const OperationDashboardPage = () => {
   return (

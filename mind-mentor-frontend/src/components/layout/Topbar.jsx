@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import mindmentors from "../../images/mindmentorz.png"
 import { HelpCircle, LogOut } from 'lucide-react';
 
 const Topbar = () => {
+  const navigate = useNavigate()
   return (
     <div className="flex flex-col w-full">
     
@@ -21,7 +23,7 @@ const Topbar = () => {
             <HelpCircle className="w-6 h-6 text-gray-600" />
           </button>
           <button className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200">
-            <LogOut className="w-6 h-6 text-gray-600" />
+            <LogOut   onClick={()=>navigate("/")} className="w-6 h-6 text-gray-600" />
           </button>
         </div>
       </div>

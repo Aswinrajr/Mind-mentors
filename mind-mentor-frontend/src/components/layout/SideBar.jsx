@@ -17,13 +17,13 @@ const Sidebar = () => {
   const purpleFilter = 'invert(24%) sepia(70%) saturate(1400%) hue-rotate(245deg) brightness(95%) contrast(96%)';
 
   const navLinks = [
-    { path: "/dashboard", icon: home, label: "Home" },
-    { path: "/kid1", icon: kids, label: "Kid1", isKid: true },
-    { path: "/availability", icon: availability, label: "Availability" },
-    { path: "/walkthrough", icon: walkthrough, label: "Walkthrough" },
-    { path: "/support", icon: support, label: "Support" },
-    { path: "/certificates", icon: certification, label: "Certificates" },
-    { path: "/attendance", icon: attendence, label: "Attendance" },
+    { path: "/parent/dashboard", icon: home, label: "Home" },
+    { path: "/parent/kid", icon: kids, label: "Kids", isKid: true },
+    { path: "/parent/kid/attendance", icon: attendence, label: "Class shedules" },
+    { path: "#", icon: availability, label: "Availability" },
+    { path: "https://www.youtube.com/watch?v=zhkDRVRu6Rc", icon: walkthrough, label: "Walkthrough" },
+    { path: "#", icon: support, label: "Support" },
+    { path: "#", icon: certification, label: "Certificates" },
   ];
 
   return (

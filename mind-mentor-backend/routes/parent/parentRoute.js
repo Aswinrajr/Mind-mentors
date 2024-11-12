@@ -11,6 +11,9 @@ parentRoute.post("/parent-kids-registration",parentController.parentStudentRegis
 
 parentRoute.post("/parent-book-demo-class",parentController.parentBookDemoClass)
 
+parentRoute.get("/get-kids-data/:id",parentController.getKidsDataList)
+
+
 
 
 
