@@ -1,7 +1,13 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./index.css";
+import 'react-toastify/dist/ReactToastify.css';
+
+
 import ParentLogin from "./component/parent-component/ParentLogin";
 import ParentOtpPage from "./component/parent-component/ParentOtpPage";
 import ParentRegistration from "./component/parent-component/ParentRegistartion";
 import ParentKidsRegistration from "./component/parent-component/ParentKidsRegistarion";
+import KidsRegistration from "./component/parent-component/KidsRegistration";
 
 
 
@@ -12,17 +18,13 @@ import ParentKidsRegistration from "./component/parent-component/ParentKidsRegis
 
 import KidsLoginPage from "./components/child/KidsLoginPage";
 import KidsOtpPage from "./components/child/KidsOtpPage";
-import KidsRegistration from "./components/parent/KidsRegistration";
 
 
-import "./index.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
 import KidsPage from "./pages/KidsPage";
 import AttendancePage from "./pages/AttandancePage";
 import FeeDetailsPage from "./pages/FeeDetailsPage";
 import ClassShedulePage from "./pages/ClassShedulePage";
-import 'react-toastify/dist/ReactToastify.css';
 
 // import LoginPage from "./employee-component/LoginPage";
 // import OperationDashboardPage from "./pages/employee/operation-employee/OperationDashboardPage";
@@ -52,12 +54,12 @@ function App() {
         <Route path="/parent/enter-otp" element={<ParentOtpPage />} />
         <Route path="/parent/registration" element={<ParentRegistration />} />
         <Route path="/parent/parent-kids-registration" element={<ParentKidsRegistration />} />
+        <Route path="/parent/kids/demo" element={<KidsRegistration />} />
 
 
         {/* Kids Routes */}
         <Route path="/kids/login" element={<KidsLoginPage />} />
         <Route path="/kids/otp" element={<KidsOtpPage />} />
-        <Route path="/kids/demo" element={<KidsRegistration />} />
 
         {/* Other Routes */}
         <Route path="/parent/dashboard" element={<DashboardPage />} />

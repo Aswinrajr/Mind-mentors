@@ -88,7 +88,7 @@ const ParentKidsRegistration = () => {
       if (result.status === 201) {
         toast.success(result?.data?.message);
         setTimeout(() => {
-          navigate("/kids/demo", { state: result?.data?.data });
+          navigate("/parent/kids/demo", { state: result?.data?.data });
         }, 2000);
       }
     } catch (err) {
