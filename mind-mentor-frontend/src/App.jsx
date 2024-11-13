@@ -75,8 +75,8 @@ function App() {
 
         
         <Route path="/parent/kid/attendance" element={<KidsPage />} />
-        {/* <Route path="/fee-details" element={<FeeDetailsPage />} /> */}
-        {/* <Route path="/class-schedule" element={<ClassShedulePage />} /> */}
+        <Route path="/fee-details" element={<FeeDetailsPage />} /> 
+         <Route path="/class-schedule" element={<ClassShedulePage />} />
 
 
         <Route path="/employee-login" element={<OperationLoginPage />} />

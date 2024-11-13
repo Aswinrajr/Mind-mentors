@@ -1,9 +1,19 @@
+import { useState, useEffect } from 'react';
 import { Users, User, Baby, Briefcase } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import ChessLoader from './loader/ChessLoader';  // Import the ChessLoader component
 
 const HomePage = () => {
   const navigate = useNavigate();
-  
+  const [loading, setLoading] = useState(true);  // Loading state
+
+  // Simulate data loading (e.g., fetching or processing data)
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);  // Set loading to false after 3 seconds
+    }, 3000);
+  }, []);
+
   const userTypes = [
     {
       title: 'Parent',
@@ -53,57 +63,66 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
       <div className="max-w-6xl mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-6">
-            <div className="bg-blue-100 p-4 rounded-full">
-              <Users className="w-12 h-12 text-blue-500" />
-            </div>
+        {/* Show loading spinner if still loading */}
+        {loading ? (
+          <div className="flex items-center justify-center min-h-screen">
+            <ChessLoader /> {/* This will now be centered */}
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Welcome to KidSystem
-          </h1>
-          <p className="text-xl text-gray-600">
-            Please select your user type to continue
-          </p>
-        </div>
-
-        {/* User Type Cards */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {userTypes.map((userType) => {
-            const colors = getColorClasses(userType.color);
-            return (
-              <div
-                key={userType.title}
-                className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105"
-              >
-                <div className={`${colors.light} p-8`}>
-                  <div className="flex justify-center">
-                    <userType.icon className={`w-16 h-16 ${colors.text}`} />
-                  </div>
-                </div>
-                
-                <div className="p-8">
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                    {userType.title}
-                  </h2>
-                  <p className="text-gray-600 mb-8">
-                    {userType.description}
-                  </p>
-                  <button
-                    onClick={() => navigate(userType.path)}
-                    className={`w-full ${colors.bg} ${colors.hover} text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-2`}
-                  >
-                    <userType.icon className="w-5 h-5" />
-                    Continue as {userType.title}
-                  </button>
+        ) : (
+          <>
+            {/* Header */}
+            <div className="text-center mb-16">
+              <div className="flex justify-center mb-6">
+                <div className="bg-blue-100 p-4 rounded-full">
+                  <Users className="w-12 h-12 text-blue-500" />
                 </div>
               </div>
-            );
-          })}
-        </div>
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                Welcome to KidSystem
+              </h1>
+              <p className="text-xl text-gray-600">
+                Please select your user type to continue
+              </p>
+            </div>
+
+            {/* User Type Cards */}
+            <div className="grid md:grid-cols-3 gap-8">
+              {userTypes.map((userType) => {
+                const colors = getColorClasses(userType.color);
+                return (
+                  <div
+                    key={userType.title}
+                    className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105"
+                  >
+                    <div className={`${colors.light} p-8`}>
+                      <div className="flex justify-center">
+                        <userType.icon className={`w-16 h-16 ${colors.text}`} />
+                      </div>
+                    </div>
+                    
+                    <div className="p-8">
+                      <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                        {userType.title}
+                      </h2>
+                      <p className="text-gray-600 mb-8">
+                        {userType.description}
+                      </p>
+                      <button
+                        onClick={() => navigate(userType.path)}
+                        className={`w-full ${colors.bg} ${colors.hover} text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md flex items-center justify-center gap-2`}
+                      >
+                        <userType.icon className="w-5 h-5" />
+                        Continue as {userType.title}
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
