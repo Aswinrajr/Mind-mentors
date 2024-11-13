@@ -15,7 +15,10 @@ const ParentLogin = () => {
   const [country, setCountry] = useState("in");
 
   const handleSubmit = async (e) => {
+
+
     e.preventDefault();
+    console.log(mobile)
     
     
     const { errors, formattedNumber } = validateForm(mobile, country.toUpperCase());

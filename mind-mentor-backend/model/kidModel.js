@@ -10,7 +10,7 @@ const kidSchema = new mongoose.Schema(
       type: Number,
     },
 
-    kidName: {
+    kidsName: {
       type: String,
 
       trim: true,

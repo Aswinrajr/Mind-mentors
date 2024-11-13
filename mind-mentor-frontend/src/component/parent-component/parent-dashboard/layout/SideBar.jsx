@@ -1,12 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import account from "../../../../images/default.jpg";
+import account from "../../../../images/boy.png";
+import home from "../../../../images/homeimages.png";
 import kids from "../../../../images/kidsnew.webp";
-import availability from "../../../../images/avail.svg";
-import home from "../../../../images/homeicon.svg";
-import walkthrough from "../../../../images/walk.svg";
-import support from "../../../../images/sup.svg";
-import certification from "../../../../images/certificate.svg";
-import attendence from "../../../../images/attendance.svg";
+import availability from "../../../../images/clock.png";
+import walkthrough from "../../../../images/briefing.png";
+import support from "../../../../images/customer-service.png";
+import certification from "../../../../images/diploma.png";
+import attendence from "../../../../images/schedule.png";
 import refer from "../../../../images/Refer.png";
 
 const Sidebar = () => {
@@ -14,12 +14,12 @@ const Sidebar = () => {
 
   const isActive = (path) => location.pathname === path;
 
-  const purpleFilter = 'invert(24%) sepia(70%) saturate(1400%) hue-rotate(245deg) brightness(95%) contrast(96%)';
+ 
 
   const navLinks = [
-    { path: "/parent/dashboard", icon: home, label: "Home" },
+    { path: "/parent/dashboard", icon: home, label: "Home" ,isHome:true},
     { path: "/parent/kid", icon: kids, label: "Kids", isKid: true },
-    { path: "/parent/kid/attendance", icon: attendence, label: "Class shedules" },
+    { path: "/parent/kid/attendance", icon: attendence, label: "Class schedules" },
     { path: "#", icon: availability, label: "Availability" },
     { path: "https://www.youtube.com/watch?v=zhkDRVRu6Rc", icon: walkthrough, label: "Walkthrough" },
     { path: "#", icon: support, label: "Support" },
@@ -42,10 +42,8 @@ const Sidebar = () => {
             className={`
               group flex flex-col items-center py-3 px-1 
               transition-colors duration-200 relative
-              ${
-                isActive(link.path) && !link.isKid ? 'bg-purple-50' : '' // Applies purple background to all except Kid1
-              } 
-              ${!isActive(link.path) ? 'hover:bg-purple-50' : ''} // Hover effect for all links
+              ${!link.isKid && isActive(link.path) ? 'bg-transparent' : ''} 
+              ${!isActive(link.path) ? 'hover:bg-purple-50' : ''}
             `}
           >
            
@@ -59,12 +57,7 @@ const Sidebar = () => {
               <img 
                 src={link.icon} 
                 alt={link.label} 
-                className={`w-full h-full mb-1 transition-[filter] duration-200 ${
-                  isActive(link.path) && !link.isKid ? '[filter:var(--purple-filter)]' : ''
-                }`}
-                style={{
-                  filter: isActive(link.path) && !link.isKid ? purpleFilter : 'none',
-                }}
+                className={`w-full h-full mb-1 transition-[filter] duration-200`}
               />
             </div>
             <span className={`

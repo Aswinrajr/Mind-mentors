@@ -3,8 +3,6 @@ import Topbar from "../component/parent-component/parent-dashboard/layout/Topbar
 import AttendanceList from "../components/attandance/AttandanceList";
 import MenuGrid from "../components/attandance/MenuGrid";
 
-
-
 const AttendancePage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -14,12 +12,13 @@ const AttendancePage = () => {
         <Sidebar />
 
         <div className="flex-1 p-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="bg-white rounded-lg shadow-sm">
+        
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="bg-white rounded-lg shadow-sm lg:col-span-1">
               <AttendanceList />
             </div>
 
-            <div className="bg-white rounded-lg shadow-sm">
+            <div className="bg-white rounded-lg shadow-sm lg:col-span-2">
               <MenuGrid />
             </div>
           </div>

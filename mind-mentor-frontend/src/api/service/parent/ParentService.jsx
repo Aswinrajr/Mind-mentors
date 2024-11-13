@@ -22,24 +22,31 @@ export const verifyOtp = async (otp) => {
   }
 };
 
-export const parentKidsRegistration = async (formData,state) => {
+export const parentKidsRegistration = async (formData, state) => {
   try {
-    const response = await parentInstance.post(`/parent/parent-kids-registration`, {
-      formData,state,
-    });
+    const response = await parentInstance.post(
+      `/parent/parent-kids-registration`,
+      {
+        formData,
+        state,
+      }
+    );
     return response;
   } catch (err) {
     return err;
   }
 };
 
-
-export const parentBookDemoClass = async (formData,state) => {
+export const parentBookDemoClass = async (formData, state) => {
   try {
-    console.log("parentBookDemoClass",formData,state)
-    const response = await parentInstance.post(`/parent/parent-book-demo-class`, {
-      formData,state,
-    });
+    console.log("parentBookDemoClass", formData, state);
+    const response = await parentInstance.post(
+      `/parent/parent-book-demo-class`,
+      {
+        formData,
+        state,
+      }
+    );
     return response;
   } catch (err) {
     return err;
@@ -48,8 +55,32 @@ export const parentBookDemoClass = async (formData,state) => {
 
 export const gettingKidsData = async (parentId) => {
   try {
-  
-    const response = await parentInstance.get(`/parent/get-kids-data/${parentId}`);
+    const response = await parentInstance.get(
+      `/parent/get-kids-data/${parentId}`
+    );
+    return response;
+  } catch (err) {
+    return err;
+  }
+};
+
+export const ParentManageChildLogin = async (id) => {
+  try {
+    const response = await parentInstance.get(
+      `/parent/manage-child-login/${id}`
+    );
+    return response;
+  } catch (err) {
+    return err;
+  }
+};
+
+export const changeChildPin = async (id, newPin) => {
+  try {
+    const response = await parentInstance.post(
+      `/parent/manage-child-pin/${id}`,
+      {newPin}
+    );
     return response;
   } catch (err) {
     return err;

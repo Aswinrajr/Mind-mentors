@@ -249,10 +249,65 @@ const getKidsDataList = async (req, res) => {
   }
 };
 
+const getChildData = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const childData = await kidModel.findOne({ _id: id }, { kidPin: 1, kidsName: 1, chessId: 1 });
+
+    if (!childData) {
+      return res.status(404).json({ message: 'Child data not found' });
+    }
+
+    return res.status(200).json(childData);
+
+  } catch (err) {
+    return res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
+
+
+const changeChildPin = async (req, res) => {
+  try {
+    const { newPin } = req.body;
+    const { id } = req.params;
+
+    const updateChild = await kidModel.findByIdAndUpdate(
+      { _id: id },
+      { kidPin: newPin },
+      { new: true }
+    );
+
+    if (!updateChild) {
+      return res.status(404).json({ message: "Child not found" });
+    }
+
+    res.status(200).json({
+      message: "Child PIN updated successfully",
+      child: updateChild,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Error in updating the child PIN",
+      error: err.message,
+    });
+  }
+};
+
+
+
+
+
+
+
+
+
+
 module.exports = {
   parentLogin,
   parentVerifyOtp,
   parentStudentRegistration,
   parentBookDemoClass,
   getKidsDataList,
+  getChildData,
+  changeChildPin
 };

@@ -13,6 +13,12 @@ parentRoute.post("/parent-book-demo-class",parentController.parentBookDemoClass)
 
 parentRoute.get("/get-kids-data/:id",parentController.getKidsDataList)
 
+parentRoute.get("/manage-child-login/:id",parentController.getChildData)
+
+parentRoute.post("/manage-child-pin/:id",parentController.changeChildPin)
+
+
+
 
 
 

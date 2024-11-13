@@ -14,9 +14,8 @@ const ParentKidsRegistration = () => {
     kidsName:state?.childName||"",
     age: "",
     gender: "",
-    programs: [],
-    chessLevel: "",
-    rubiksCubeLevel: "",
+  
+   
     intention: "",
     schoolName: "",
     address: "",

@@ -36,6 +36,8 @@ import OperationDashboardPage from "./pages/employee/operation-employee/Operatio
 import SEnquiryFormPage from "./pages/employee/operation-employee/SEnquiryFormPage";
 import ListingEnquiries from "./pages/employee/operation-employee/ListingEnquiries";
 import AddKid from "./components/parent/AddKid";
+import ParentDemoClassPage from "./pages/ParentDemoClassPage";
+import ParentManageChildLoginPage from "./pages/ParentManageChildLoginPage";
 
 
 function App() {
@@ -55,6 +57,13 @@ function App() {
         <Route path="/parent/registration" element={<ParentRegistration />} />
         <Route path="/parent/parent-kids-registration" element={<ParentKidsRegistration />} />
         <Route path="/parent/kids/demo" element={<KidsRegistration />} />
+        <Route path="/parent/dashboard" element={<DashboardPage />} />
+        <Route path="/parent/kid" element={<ParentKidsDetailsPage />} />
+        <Route path="/parent/add-kid" element={<AddKid />} />
+        <Route path="/parent/kid/attendance/:id" element={<AttendancePage />} />
+        <Route path="/parent/kid/demo-class" element={<ParentDemoClassPage />} />
+        <Route path="/parent/kid/manage-login/:id" element={<ParentManageChildLoginPage/>} />
+
 
 
         {/* Kids Routes */}
@@ -62,22 +71,18 @@ function App() {
         <Route path="/kids/otp" element={<KidsOtpPage />} />
 
         {/* Other Routes */}
-        <Route path="/parent/dashboard" element={<DashboardPage />} />
-        {/* <Route path="/parent/kid" element={<ParentKidsDetailsPage />} /> */}
-        {/* <Route path="/parent/kid/attendance/:id" element={<AttendancePage />} /> */}
-        {/* <Route path="/parent/add-kid" element={<AddKid />} /> */}
 
 
         
-        {/* <Route path="/parent/kid/attendance" element={<KidsPage />} /> */}
+        <Route path="/parent/kid/attendance" element={<KidsPage />} />
         {/* <Route path="/fee-details" element={<FeeDetailsPage />} /> */}
         {/* <Route path="/class-schedule" element={<ClassShedulePage />} /> */}
 
 
-        {/* <Route path="/employee-login" element={<OperationLoginPage />} /> */}
-        {/* <Route path="/employee-operation-dashboard" element={<OperationDashboardPage />} /> */}
-        {/* <Route path="/crm/employee-operation-enquiry-form" element={<SEnquiryFormPage />} /> */}
-        {/* <Route path="/crm/employee-operation-enquiry-list" element={<ListingEnquiries/>} /> */}
+        <Route path="/employee-login" element={<OperationLoginPage />} />
+        <Route path="/employee-operation-dashboard" element={<OperationDashboardPage />} />
+        <Route path="/crm/employee-operation-enquiry-form" element={<SEnquiryFormPage />} />
+        <Route path="/crm/employee-operation-enquiry-list" element={<ListingEnquiries/>} />
 
 
 
