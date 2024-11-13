@@ -4,12 +4,12 @@ import { useParams } from 'react-router-dom';
 import { changeChildPin, ParentManageChildLogin } from '../../../../api/service/parent/ParentService';
 import { toast, ToastContainer } from "react-toastify";
 
-
 const ManageChildLogin = () => {
   const { id } = useParams();
   const [child, setChild] = useState(null);
   const [pin, setPin] = useState('');
   const [isEditingPin, setIsEditingPin] = useState(false);
+  const [loading, setLoading] = useState(true); // Add a loading state
 
   useEffect(() => {
     const fetchChildData = async () => {
@@ -21,6 +21,8 @@ const ManageChildLogin = () => {
         }
       } catch (error) {
         console.log("Error fetching child data:", error);
+      } finally {
+        setLoading(false); // Set loading to false when data is fetched
       }
     };
 
@@ -44,18 +46,30 @@ const ManageChildLogin = () => {
     }));
 
     try {
-     
         const response = await changeChildPin(id, newPin);
         console.log(response);
-    
+
         if (response.status === 200) {
           toast.success(response.data.message);
         }
       } catch (error) {
         console.error('Error updating PIN:', error);
-        toast.error('Error updating PIN'); 
+        toast.error('Error updating PIN');
       }
   };
+
+  // Conditional rendering based on loading state
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-gradient-to-r from-purple-500 to-blue-500">
+        <div className="bg-gray-800 shadow-xl rounded-lg p-8 animate-pulse space-y-4 w-full max-w-md">
+          <div className="h-8 bg-gray-600 rounded-md"></div>
+          <div className="h-8 bg-gray-600 rounded-md"></div>
+          <div className="h-8 bg-gray-600 rounded-md"></div>
+        </div>
+      </div>
+    );
+  }
 
   if (!child) {
     return (
@@ -142,14 +156,14 @@ const ManageChildLogin = () => {
         </div>
       </div>
       <ToastContainer
-      position="top-right"
-      autoClose={5000}
-      hideProgressBar={false}
-      closeOnClick
-      pauseOnHover
-      draggable
-      pauseOnFocusLoss
-    />
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        pauseOnFocusLoss
+      />
     </div>
   );
 };
