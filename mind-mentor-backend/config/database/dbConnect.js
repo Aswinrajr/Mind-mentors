@@ -6,7 +6,7 @@ const dbConnect = () => {
   console.log("Welcome to database")
   mongoose
     .connect(
-          // `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.xf8fs26.mongodb.net/${MONGO_DATABASE_NAME}`
+          
           `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.jczad.mongodb.net/${MONGO_DATABASE_NAME}`
       , {
       serverSelectionTimeoutMS: 30000, 
