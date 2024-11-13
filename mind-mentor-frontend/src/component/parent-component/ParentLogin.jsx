@@ -136,7 +136,7 @@ const ParentLogin = () => {
                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[rgb(177,21,177)] 
                 transition-all duration-300 text-sm sm:text-base font-medium flex items-center justify-center"
             >
-              LOGIN <ArrowRight size={16} className="ml-2" />
+              Next <ArrowRight size={16} className="ml-2" />
             </button>
           </form>
 

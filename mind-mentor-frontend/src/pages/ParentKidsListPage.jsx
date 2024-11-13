@@ -1,6 +1,6 @@
 
-import Sidebar from "../components/layout/SideBar";
-import Topbar from "../components/layout/Topbar";
+import Sidebar from "../component/parent-component/parent-dashboard/layout/SideBar";
+import Topbar from "../component/parent-component/parent-dashboard/layout/Topbar";
 import KidsDetails from "../components/parent/KidsDetails";
 
 const ParentKidsDetailsPage = () => {

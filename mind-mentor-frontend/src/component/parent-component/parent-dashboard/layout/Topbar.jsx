@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import mindmentors from "../../images/mindmentorz.png"
+import mindmentors from "../../../../images/mindmentorz.png"
 import { HelpCircle, LogOut } from 'lucide-react';
 
 const Topbar = () => {

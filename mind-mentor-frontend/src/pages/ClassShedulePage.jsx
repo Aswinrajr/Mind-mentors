@@ -1,7 +1,8 @@
 
+import Sidebar from "../component/parent-component/parent-dashboard/layout/SideBar";
+import Topbar from "../component/parent-component/parent-dashboard/layout/Topbar";
 import ClassSchedule from "../components/fee/ClassShedule";
-import Sidebar from "../components/layout/SideBar";
-import Topbar from "../components/layout/Topbar";
+
 
 const ClassShedulePage = () => {
   return (

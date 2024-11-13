@@ -187,7 +187,7 @@ const ParentRegistration = () => {
               type="submit"
               className="bg-[rgb(177,21,177)] w-full py-3 px-4 text-white font-medium rounded-md hover:bg-opacity-90 transition duration-300 flex items-center justify-center"
             >
-              CONTINUE
+              Next
               <span className="ml-2">→</span>
             </button>
           </form>

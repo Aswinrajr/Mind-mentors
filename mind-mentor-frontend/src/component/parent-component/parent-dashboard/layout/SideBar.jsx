@@ -1,13 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
-import account from "../../images/default.jpg";
-import kids from "../../images/kidsnew.webp";
-import availability from "../../images/avail.svg";
-import home from "../../images/homeicon.svg";
-import walkthrough from "../../images/walk.svg";
-import support from "../../images/sup.svg";
-import certification from "../../images/certificate.svg";
-import attendence from "../../images/attendance.svg";
-import refer from "../../images/Refer.png";
+import account from "../../../../images/default.jpg";
+import kids from "../../../../images/kidsnew.webp";
+import availability from "../../../../images/avail.svg";
+import home from "../../../../images/homeicon.svg";
+import walkthrough from "../../../../images/walk.svg";
+import support from "../../../../images/sup.svg";
+import certification from "../../../../images/certificate.svg";
+import attendence from "../../../../images/attendance.svg";
+import refer from "../../../../images/Refer.png";
 
 const Sidebar = () => {
   const location = useLocation();

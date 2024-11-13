@@ -110,7 +110,7 @@ const ParentOtpPage = () => {
             type="submit"
             className="w-full bg-[rgb(177,21,177)] text-white py-3 px-4 rounded-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[rgb(177,21,177)] transition duration-300"
           >
-            LOGIN →
+            Next →
           </button>
         </form>
       </div>

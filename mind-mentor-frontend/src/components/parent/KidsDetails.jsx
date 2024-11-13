@@ -12,15 +12,14 @@ const KidsDetails = () => {
   useEffect(() => {
     const fetchKidsData = async () => {
       const response = await gettingKidsData(parentId);
-      console.log("response in fetch kids data", response.data.kidsData);
+      console.log("response in fetch kids data", response?.data?.kidsData);
       if (response.status === 200) {
-        setKids(response.data.kidsData);
+        setKids(response?.data?.kidsData);
       }
     };
     fetchKidsData();
   }, []);
 
-  console.log("set", kids);
 
   return (
     <div className="p-6">
@@ -35,17 +34,17 @@ const KidsDetails = () => {
         </button>
       </div>
       
-      {kids && kids.length > 0 ? (
+      {kids && kids?.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {kids.map((kid) => (
-            <div key={kid._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          {kids?.map((kid) => (
+            <div key={kid?._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
               <div className="p-4">
                 {/* Profile Image/Avatar Section */}
                 <div className="flex justify-center mb-4">
-                  {kid.imageUrl ? (
+                  {kid?.imageUrl ? (
                     <img
-                      src={kid.imageUrl}
-                      alt={`${kid.firstName}'s profile`}
+                      src={kid?.imageUrl}
+                      alt={`${kid?.firstName}'s profile`}
                       className="w-32 h-32 rounded-full object-cover border-4 border-blue-100"
                     />
                   ) : (
@@ -66,7 +65,7 @@ const KidsDetails = () => {
                   <div className="mt-4">
                     <h4 className="text-sm font-semibold text-gray-600 mb-2">Active Courses</h4>
                     <div className="flex flex-wrap gap-2 justify-center">
-                      {kid.programs.map((course, index) => (
+                      {kid?.programs?.map((course, index) => (
                         <span 
                           key={index}
                           className="bg-green-50 text-green-600 text-sm px-3 py-1 rounded-full"

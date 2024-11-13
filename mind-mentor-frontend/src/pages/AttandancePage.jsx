@@ -1,7 +1,9 @@
+import Sidebar from "../component/parent-component/parent-dashboard/layout/SideBar";
+import Topbar from "../component/parent-component/parent-dashboard/layout/Topbar";
 import AttendanceList from "../components/attandance/AttandanceList";
 import MenuGrid from "../components/attandance/MenuGrid";
-import Sidebar from "../components/layout/SideBar";
-import Topbar from "../components/layout/Topbar";
+
+
 
 const AttendancePage = () => {
   return (

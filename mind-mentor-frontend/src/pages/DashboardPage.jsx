@@ -1,6 +1,6 @@
-import Dashboard from "../components/dashboard/Dashboard"
-import Sidebar from "../components/layout/SideBar"
-import Topbar from "../components/layout/Topbar"
+import Dashboard from "../component/parent-component/parent-dashboard/dashboard-components/Dashboard"
+import Sidebar from "../component/parent-component/parent-dashboard/layout/SideBar"
+import Topbar from "../component/parent-component/parent-dashboard/layout/Topbar"
 
 
 const DashboardPage = () => {

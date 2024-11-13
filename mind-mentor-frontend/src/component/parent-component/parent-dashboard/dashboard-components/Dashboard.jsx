@@ -1,8 +1,8 @@
-import AchievementTarget from "./AchievementTarget";
-import ClassActivity from "./ClassActivity";
-import Classes from "./Classes";
-import MetricsCards from "./MetricsCards";
-import PerformanceMetrix from "./PerformanceMetrix";
+import AchievementTarget from "../../../../components/dashboard/AchievementTarget";
+import ClassActivity from "../../../../components/dashboard/ClassActivity";
+import Classes from "../../../../components/dashboard/Classes";
+import MetricsCards from "../../../../components/dashboard/MetricsCards";
+import PerformanceMetrix from "../../../../components/dashboard/PerformanceMetrix";
 
 const Dashboard = () => {
   return (

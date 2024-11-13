@@ -254,12 +254,18 @@ const ParentKidsRegistration = () => {
           </div>
   
           <div className="flex justify-center mt-6">
-            <button
-              type="submit"
-              className="bg-sky-600 text-white px-6 py-2 rounded-lg text-sm"
-            >
-              Submit
-            </button>
+
+          <button
+            type="submit"
+            className="w-full bg-[rgb(177,21,177)] text-white py-3 px-4 rounded-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[rgb(177,21,177)] transition duration-300"
+          >
+            Next →
+          </button>
+
+
+
+
+        
           </div>
         </form>
       </div>

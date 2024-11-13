@@ -1,7 +1,8 @@
+import Sidebar from "../component/parent-component/parent-dashboard/layout/SideBar";
+import Topbar from "../component/parent-component/parent-dashboard/layout/Topbar";
 import Calendar from "../components/kidsNav/Calender";
 import Stats from "../components/kidsNav/Stats";
-import Sidebar from "../components/layout/SideBar";
-import Topbar from "../components/layout/Topbar";
+
 
 const KidsPage = () => {
   return (
