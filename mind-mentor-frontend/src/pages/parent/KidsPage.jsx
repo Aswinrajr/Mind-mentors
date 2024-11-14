@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import Sidebar from "../component/parent-component/parent-dashboard/layout/SideBar";
-import Topbar from "../component/parent-component/parent-dashboard/layout/Topbar";
-import Calendar from "../components/kidsNav/Calender";
-import Stats from "../components/kidsNav/Stats";
-import ChessLoader from '../landingPage/loader/ChessLoader';  
+import ChessLoader from '../../landingPage/loader/ChessLoader';
+import Sidebar from '../../component/parent-component/parent-dashboard/layout/SideBar';
+import Topbar from '../../component/parent-component/parent-dashboard/layout/Topbar';
+
+import Calendar from "../../components/kidsNav/Calender";
+import Stats from "../../components/kidsNav/Stats"
+
 
 const KidsPage = () => {
   const [loading, setLoading] = useState(true);  

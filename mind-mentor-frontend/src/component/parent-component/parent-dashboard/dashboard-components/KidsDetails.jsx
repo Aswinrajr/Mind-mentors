@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Award,
   Book,
@@ -9,26 +10,12 @@ import {
   User,
   UserPlus,
 } from "lucide-react";
-import { useEffect, useState } from "react";
-import { gettingKidsData } from "../../../../api/service/parent/ParentService";
+
 import { useNavigate } from "react-router-dom";
 
-const KidsDetails = () => {
+const KidsDetails = ({kids}) => {
   const navigate = useNavigate();
-  const [kids, setKids] = useState([]);
-  const parentId = localStorage.getItem("parentId");
-  console.log("parent id", parentId);
-
-  useEffect(() => {
-    const fetchKidsData = async () => {
-      const response = await gettingKidsData(parentId);
-      console.log("response in fetch kids data", response?.data?.kidsData);
-      if (response.status === 200) {
-        setKids(response?.data?.kidsData);
-      }
-    };
-    fetchKidsData();
-  }, []);
+  
 
   return (
     <div className="p-8 bg-gradient-to-br from-blue-50 via-white to-purple-50 min-h-screen">

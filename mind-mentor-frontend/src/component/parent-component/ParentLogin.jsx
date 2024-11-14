@@ -86,7 +86,7 @@ const ParentLogin = () => {
               className="flex items-center text-xs sm:text-sm focus:outline-none hover:bg-white/10 p-2 rounded transition-all duration-300"
               onClick={() => setLanguage(language === "English" ? "Hindi" : "English")}
             >
-              <span className="mr-1 sm:mr-2">🇬🇧</span>
+              <span className="mr-1 sm:mr-2">in</span>
               <span>{language}</span>
               <ChevronDown size={16} className="ml-1" />
             </button>
@@ -106,7 +106,7 @@ const ParentLogin = () => {
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 w-full">
             <div className="space-y-2">
               <label htmlFor="mobile" className="block text-sm font-medium text-gray-700">
-                Enter your phone number
+                Enter your wats up number
               </label>
               
               <div className="relative">

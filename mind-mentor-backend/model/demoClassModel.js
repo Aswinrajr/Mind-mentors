@@ -25,7 +25,7 @@ const demoClassSchema = new mongoose.Schema(
     parentId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Parent",
-      required: true,
+   
     },
     kidId: {
       type: mongoose.Schema.Types.ObjectId,
