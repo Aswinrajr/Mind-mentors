@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import ChessLoader from "../../landingPage/loader/ChessLoader";
-import Sidebar from "../../component/parent-component/parent-dashboard/layout/SideBar";
-import Topbar from "../../component/parent-component/parent-dashboard/layout/Topbar";
-import Dashboard from "../../component/parent-component/parent-dashboard/dashboard-components/Dashboard";
 
-const DashboardPage = () => {
+import KidsDahbaordPage from "../../component/kids-component/kids-dashboard/KidsDashboard";
+import ChessLoader from "../../landingPage/loader/ChessLoader";
+import KidSidebar from "../../component/kids-component/kids-dashboard/kid-layout/KidSidebar";
+import KidTopbar from "../../component/kids-component/kids-dashboard/kid-layout/KidTopbar";
+
+const KidsDashboard = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,22 +22,17 @@ const DashboardPage = () => {
         </div>
       ) : (
         <>
-          {/* Topbar fixed at the top */}
-          <Topbar />
+          <KidTopbar />
 
-          {/* Main content with Sidebar and Dashboard */}
           <div className="flex flex-1 overflow-hidden">
-            {/* Sidebar with full height */}
             <div className="h-full">
-              <Sidebar />
+              <KidSidebar />
             </div>
 
-            {/* Content area set to grow and scroll if needed */}
             <div className="flex-1 p-6 overflow-y-auto">
               <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
-                {/* Main Dashboard area */}
                 <div className="bg-white rounded-lg shadow-sm lg:col-span-2 p-4">
-                  <Dashboard />
+                  <KidsDahbaordPage />
                 </div>
               </div>
             </div>
@@ -47,4 +43,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default KidsDashboard;

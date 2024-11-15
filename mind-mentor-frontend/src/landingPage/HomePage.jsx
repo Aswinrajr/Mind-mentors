@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Users, User, Baby, Briefcase } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import ChessLoader from './loader/ChessLoader';  // Import the ChessLoader component
+import ChessLoader from './loader/ChessLoader';  
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);  // Loading state
+  const [loading, setLoading] = useState(true);  
 
-  // Simulate data loading (e.g., fetching or processing data)
+ 
   useEffect(() => {
     setTimeout(() => {
-      setLoading(false);  // Set loading to false after 3 seconds
+      setLoading(false); 
     }, 3000);
   }, []);
 
@@ -26,7 +26,7 @@ const HomePage = () => {
       title: 'Kid',
       icon: Baby,
       description: 'Access your activities, games, and learning materials',
-      path: '#', // Adjust path as needed for kid login
+      path: '/kids/login', 
       color: 'green'
     },
     {
@@ -65,14 +65,14 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
       <div className="max-w-6xl mx-auto px-4 py-12">
-        {/* Show loading spinner if still loading */}
+    
         {loading ? (
           <div className="flex items-center justify-center min-h-screen">
-            <ChessLoader /> {/* This will now be centered */}
+            <ChessLoader /> 
           </div>
         ) : (
           <>
-            {/* Header */}
+          
             <div className="text-center mb-16">
               <div className="flex justify-center mb-6">
                 <div className="bg-blue-100 p-4 rounded-full">

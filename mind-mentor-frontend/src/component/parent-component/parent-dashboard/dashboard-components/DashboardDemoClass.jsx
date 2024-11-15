@@ -3,7 +3,7 @@ import { ArrowLeft, Calendar, MapPin, AlertCircle } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const DashboardDemoClass = () => {
-  const {id}  =useParams()
+  const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [demoClass, setDemoClass] = useState(null);
@@ -27,7 +27,8 @@ const DashboardDemoClass = () => {
             1000
           )
         );
-        setDemoClass("");
+        setDemoClass(response);
+        // setDemoClass("");
       } catch (err) {
         console.log("Error in getting demo class", err);
         setError("Failed to fetch demo class details");
@@ -47,7 +48,7 @@ const DashboardDemoClass = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-gray-50">
-        <div className="animate-pulse text-gray-500">Loading...</div>
+        {/* <div className="animate-pulse text-gray-500">Loading.....</div> */}
       </div>
     );
   }
@@ -130,10 +131,10 @@ const DashboardDemoClass = () => {
 
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 mt-6">
-                  <button className="flex-1 bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors duration-200 text-center">
-                    Confirm Attendance
-                  </button>
-                  <button className="flex-1 border border-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors duration-200 text-center"  onClick={handleRequestDemo} >
+                  <button
+                    className="flex-1 bg-[rgb(177,21,177)] border border-gray-300 text-white py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors duration-200 text-center"
+                    onClick={handleRequestDemo}
+                  >
                     Reschedule
                   </button>
                 </div>
@@ -152,7 +153,7 @@ const DashboardDemoClass = () => {
                 </p>
                 <button
                   onClick={handleRequestDemo}
-                  className="bg-indigo-600 text-white py-2 px-6 rounded-lg hover:bg-indigo-700 transition-colors duration-200"
+                  className="bg-[rgb(177,21,177)] text-white py-2 px-6 rounded-lg transition-transform duration-200 shadow-[0px_8px_15px_rgba(0,0,0,0.4)] hover:shadow-[0px_12px_24px_rgba(0,0,0,0.5)] transform hover:translate-y-[-2px]"
                 >
                   Request Demo Class
                 </button>
