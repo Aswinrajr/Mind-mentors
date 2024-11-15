@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import { useState, useEffect } from 'react';
-import { ArrowLeftIcon, CheckIcon, EditIcon } from 'lucide-react';
-import { useParams } from 'react-router-dom';
-import { changeChildPin, ParentManageChildLogin } from '../../../../api/service/parent/ParentService';
-import { toast, ToastContainer } from "react-toastify";
-=======
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -13,18 +6,13 @@ import {
 } from "../../../../api/service/parent/ParentService";
 import { toast } from "react-toastify";
 import { Lock,  Pencil } from "lucide-react";
->>>>>>> parentSide
 
 const ManageChildLogin = () => {
   const { id } = useParams();
   const [child, setChild] = useState(null);
   const [pin, setPin] = useState("");
   const [isEditingPin, setIsEditingPin] = useState(false);
-<<<<<<< HEAD
-  const [loading, setLoading] = useState(true); // Add a loading state
-=======
   const [isLoading, setIsLoading] = useState(true);
->>>>>>> parentSide
 
   useEffect(() => {
     const fetchChildData = async () => {
@@ -35,16 +23,10 @@ const ManageChildLogin = () => {
           setPin(response.data.kidPin || "");
         }
       } catch (error) {
-<<<<<<< HEAD
-        console.log("Error fetching child data:", error);
-      } finally {
-        setLoading(false); // Set loading to false when data is fetched
-=======
         console.error("Error fetching child data:", error);
         toast.error("Failed to load child data");
       } finally {
         setIsLoading(false);
->>>>>>> parentSide
       }
     };
 
@@ -74,27 +56,6 @@ const ManageChildLogin = () => {
     }
   };
 
-<<<<<<< HEAD
-  const saveUpdatedPin = async(newPin) => {
-    console.log('Saving new PIN:', newPin);
-    setChild((prevChild) => ({
-      ...prevChild,
-      kidPin: newPin,
-    }));
-
-    try {
-        const response = await changeChildPin(id, newPin);
-        console.log(response);
-
-        if (response.status === 200) {
-          toast.success(response.data.message);
-        }
-      } catch (error) {
-        console.error('Error updating PIN:', error);
-        toast.error('Error updating PIN');
-      }
-  };
-=======
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -102,20 +63,9 @@ const ManageChildLogin = () => {
       </div>
     );
   }
->>>>>>> parentSide
 
   // Conditional rendering based on loading state
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen bg-gradient-to-r from-purple-500 to-blue-500">
-        <div className="bg-gray-800 shadow-xl rounded-lg p-8 animate-pulse space-y-4 w-full max-w-md">
-          <div className="h-8 bg-gray-600 rounded-md"></div>
-          <div className="h-8 bg-gray-600 rounded-md"></div>
-          <div className="h-8 bg-gray-600 rounded-md"></div>
-        </div>
-      </div>
-    );
-  }
+
 
   if (!child) {
     return (
@@ -209,20 +159,7 @@ const ManageChildLogin = () => {
             )}
           </div>
         </div>
-<<<<<<< HEAD
-      </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        closeOnClick
-        pauseOnHover
-        draggable
-        pauseOnFocusLoss
-      />
-=======
      
->>>>>>> parentSide
     </div>
   );
 };
