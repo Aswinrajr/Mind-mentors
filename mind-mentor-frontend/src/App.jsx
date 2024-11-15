@@ -36,7 +36,7 @@ import ParentProfilePage from "./pages/parent/ParentProfilePage";
 import CertificatePage from "./pages/parent/CertificatePage";
 import KidsLoginPage from "./component/kids-component/kids-login/KidsLoginPage";
 import KidsPinPage from "./component/kids-component/kids-login/KidsPinPage";
-import KidsDashboard from "./pages/kids/KidsDashboard.JSX";
+import KidsDashboard from "./pages/kids/KidsDashboard";
 
 function App() {
   return (
