@@ -23,6 +23,10 @@ parentRoute.post("/book-new-demo-class/:kidId",parentController.parentBookNewDem
 parentRoute.post("/add-new-kid/:parentId",parentController.parentAddNewKid)
 
 
+parentRoute.get("/getprofiledata/:parentId",parentController.getParentProfileData)
+
+
+
 
 
 

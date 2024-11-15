@@ -27,7 +27,7 @@ const DashboardDemoClass = () => {
             1000
           )
         );
-        setDemoClass(response);
+        setDemoClass("");
       } catch (err) {
         console.log("Error in getting demo class", err);
         setError("Failed to fetch demo class details");

@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import account from "../../../../images/boy.png";
 import home from "../../../../images/homeimages.png";
 import kids from "../../../../images/kidsnew.webp";
@@ -11,6 +11,7 @@ import refer from "../../../../images/Refer.png";
 
 const Sidebar = () => {
   const location = useLocation();
+  const navigate  = useNavigate()
 
   const isActive = (path) => location.pathname === path;
 
@@ -23,14 +24,14 @@ const Sidebar = () => {
     { path: "#", icon: availability, label: "Availability" },
     { path: "https://www.youtube.com/watch?v=zhkDRVRu6Rc", icon: walkthrough, label: "Walkthrough" },
     { path: "#", icon: support, label: "Support" },
-    { path: "#", icon: certification, label: "Certificates" },
+    { path: "/parent/certificate", icon: certification, label: "Certificates" },
   ];
 
   return (
     <div className="w-[130px] bg-white flex flex-col shadow-md h-screen">
    
       <div className="relative pt-4 pb-8 flex justify-center">
-        <img src={account} alt="Profile" className="w-10 h-10 rounded-full" />
+        <img src={account} onClick={()=>navigate("/parent/profile/manage")} alt="Profile" className="w-10 h-10 rounded-full" />
         <div className="w-2.5 h-2.5 bg-green-500 rounded-full absolute bottom-7 right-5 border-2 border-white"></div>
       </div>
 

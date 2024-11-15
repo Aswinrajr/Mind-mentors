@@ -13,7 +13,7 @@ const SheduleDemoClass = () => {
   const [time, setTime] = useState("");
   const [loading, setLoading] = useState(false);
   const [demoClass, setDemoClass] = useState(null); 
-  const [isScheduled, setIsScheduled] = useState(false); 
+  const [isScheduled, setIsScheduled] = useState(true); 
 
   useEffect(() => {
     const fetchDemoClass = async () => {

@@ -125,3 +125,16 @@ export const parentRegisterChampions = async (parentId, formData) => {
     return err;
   }
 };
+
+export const getParentData = async (parentId) => {
+  try {
+  
+    const response = await parentInstance.get(
+      `/parent/getprofiledata/${parentId}`,
+   
+    );
+    return response;
+  } catch (err) {
+    return err;
+  }
+};

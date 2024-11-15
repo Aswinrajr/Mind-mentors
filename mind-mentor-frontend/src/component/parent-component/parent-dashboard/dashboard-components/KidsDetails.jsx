@@ -137,10 +137,10 @@ const KidsDetails = ({kids}) => {
                     View Progress
                     <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                   </button>
-                  <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 flex items-center justify-center group">
+                  {/* <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 flex items-center justify-center group">
                     <Award className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
                     Edit Profile
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

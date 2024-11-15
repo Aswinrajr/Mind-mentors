@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 
-
 // parent login part
 import ParentLogin from "./component/parent-component/ParentLogin";
 import ParentOtpPage from "./component/parent-component/ParentOtpPage";
@@ -11,11 +10,9 @@ import ParentKidsRegistration from "./component/parent-component/ParentKidsRegis
 import KidsRegistration from "./component/parent-component/KidsRegistration";
 
 // parent dashboard part
-import DashboardPage from "./pages/parent/DashboardPage"
+import DashboardPage from "./pages/parent/DashboardPage";
 import KidsPage from "./pages/parent/KidsPage";
 import ParentKidsDetailsPage from "./pages/parent/ParentKidsListPage";
-
-
 
 import KidsLoginPage from "./components/child/KidsLoginPage";
 import KidsOtpPage from "./components/child/KidsOtpPage";
@@ -36,6 +33,8 @@ import AddKid from "./components/parent/AddKid";
 import ParentDemoClassPage from "./pages/parent/ParentDemoClassPage";
 import ParentManageChildLoginPage from "./pages/ParentManageChildLoginPage";
 import ParentReqNewDemoClass from "./pages/parent/ParentReqNewDemoClass";
+import ParentProfilePage from "./pages/parent/ParentProfilePage";
+import CertificatePage from "./pages/parent/CertificatePage";
 
 function App() {
   return (
@@ -61,7 +60,7 @@ function App() {
           path="/parent/kid/demo-class/:id"
           element={<ParentDemoClassPage />}
         />
-           <Route
+        <Route
           path="/parent/kid/demo-class-shedule/:id"
           element={<ParentReqNewDemoClass />}
         />
@@ -69,6 +68,10 @@ function App() {
           path="/parent/kid/manage-login/:id"
           element={<ParentManageChildLoginPage />}
         />
+
+        <Route path="/parent/profile/manage" element={<ParentProfilePage />} />
+
+        <Route path="/parent/certificate" element={<CertificatePage />} />
 
         {/* Kids Routes */}
         <Route path="/kids/login" element={<KidsLoginPage />} />
