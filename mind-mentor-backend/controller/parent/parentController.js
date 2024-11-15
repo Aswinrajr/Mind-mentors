@@ -17,7 +17,7 @@ const parentLogin = async (req, res) => {
     req.app.locals.mobile = mobile;
     req.app.locals.otpExpiry = Date.now() + 5 * 60 * 1000;
 
-    const parentExist = await parentModel.findOne({ parentMobile: mobile});
+    const parentExist = await parentModel.findOne({ parentMobile: mobile });
 
     if (parentExist) {
       res.status(200).json({
@@ -27,7 +27,7 @@ const parentLogin = async (req, res) => {
         otp,
         data: {
           parentId: parentExist._id,
-          type:parentExist?.type,
+          type: parentExist?.type,
         },
       });
     } else {
@@ -57,7 +57,6 @@ const parentLogin = async (req, res) => {
     });
   }
 };
-
 
 const parentVerifyOtp = async (req, res) => {
   try {
@@ -113,15 +112,14 @@ const parentStudentRegistration = async (req, res) => {
 
     const newKid = new kidModel({
       kidsName: formData.kidsName,
-    
+
       age: formData.age,
       gender: formData.gender,
-    
-     
+
       intention: formData.intention,
       schoolName: formData.schoolName,
       address: formData.address,
-      pincode:formData.pincode,
+      pincode: formData.pincode,
       parentId: parentData ? parentData._id : null,
       chessId: chessId,
       kidPin,
@@ -137,6 +135,7 @@ const parentStudentRegistration = async (req, res) => {
           $set: {
             parentEmail: state.email,
             parentName: state.name,
+            type: "exist",
           },
         },
         { new: true }
@@ -148,6 +147,7 @@ const parentStudentRegistration = async (req, res) => {
         parentName: state.name,
         isMobileWhatsapp: state.isMobileWhatsapp,
         kids: [newKid._id],
+        type: "exist",
       });
       await parentData.save();
     }
@@ -176,19 +176,16 @@ const parentBookDemoClass = async (req, res) => {
     const { formData, state } = req.body;
     const { parent, kid } = state;
 
+    formData.programs.map((data) => {
+      console.log(data);
+    });
 
-    formData.programs.map((data)=>{
-      console.log(data)
-    })
-
-  
     console.log("Parent ID:", parent._id, "Kid ID:", kid._id);
 
-   
     const demoClass = new demoClassModel({
       programs: formData.programs.map((programObj) => ({
-        program: programObj.program,         
-        programLevel: programObj.programLevel 
+        program: programObj.program,
+        programLevel: programObj.programLevel,
       })),
       date: formData.date,
       time: formData.time,
@@ -205,11 +202,9 @@ const parentBookDemoClass = async (req, res) => {
     });
 
     // Updating kid data if necessary
-    const updatedKid = await kidModel.findByIdAndUpdate(
-      { _id: kid._id },
-      kid,
-      { new: true }
-    );
+    const updatedKid = await kidModel.findByIdAndUpdate({ _id: kid._id }, kid, {
+      new: true,
+    });
 
     res.status(201).json({
       success: true,
@@ -225,19 +220,16 @@ const parentBookDemoClass = async (req, res) => {
   }
 };
 
-
-
 const getKidsDataList = async (req, res) => {
   try {
     console.log("Welcome to list the kids data", req.params);
 
     const kidsData = await kidModel.find({ parentId: req.params.id });
 
-
     res.status(200).json({
       success: true,
       message: "Kids data retrieved successfully.",
-       kidsData,
+      kidsData,
     });
   } catch (err) {
     console.error("Error in listing the kids data", err);
@@ -252,19 +244,22 @@ const getKidsDataList = async (req, res) => {
 const getChildData = async (req, res) => {
   try {
     const { id } = req.params;
-    const childData = await kidModel.findOne({ _id: id }, { kidPin: 1, kidsName: 1, chessId: 1 });
+    const childData = await kidModel.findOne(
+      { _id: id },
+      { kidPin: 1, kidsName: 1, chessId: 1 }
+    );
 
     if (!childData) {
-      return res.status(404).json({ message: 'Child data not found' });
+      return res.status(404).json({ message: "Child data not found" });
     }
 
     return res.status(200).json(childData);
-
   } catch (err) {
-    return res.status(500).json({ message: 'Server error', error: err.message });
+    return res
+      .status(500)
+      .json({ message: "Server error", error: err.message });
   }
 };
-
 
 const changeChildPin = async (req, res) => {
   try {
@@ -293,13 +288,231 @@ const changeChildPin = async (req, res) => {
   }
 };
 
+const getDemoClassDetails = async (req, res) => {
+  try {
+    console.log("Welcome to get demo class data");
+    const { kidId } = req.params;
+    const demoClassData = await demoClassModel.findOne({ kidId: kidId });
+    console.log("demoClassData", demoClassData);
 
+    if (!demoClassData) {
+      return res
+        .status(200)
+        .json({ message: "Demo class not found", data: null });
+    }
 
+    return res.status(200).json({ data: demoClassData });
+  } catch (err) {
+    console.log("Error in getting the demo class", err);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
 
+const parentBookNewDemoClass = async (req, res) => {
+  try {
+    console.log("Update/post the demo data", req.body);
+    const { kidId } = req.params;
+    const { programs, date, time } = req.body;
 
+    if (!programs || !date || !time) {
+      return res
+        .status(400)
+        .json({ message: "Please provide all the required fields" });
+    }
 
+    const existingDemoClass = await demoClassModel.findOne({ kidId });
 
+    if (existingDemoClass) {
+      existingDemoClass.programs = programs;
+      existingDemoClass.date = new Date(date);
+      existingDemoClass.time = time;
 
+      await existingDemoClass.save();
+
+      return res.status(200).json({
+        message: "Demo class updated successfully",
+        demoClass: existingDemoClass,
+      });
+    } else {
+      const newDemoClass = new demoClassModel({
+        programs,
+        date: new Date(date),
+        time,
+        kidId,
+      });
+
+      await newDemoClass.save();
+
+      return res.status(201).json({
+        message: "Demo class booked successfully",
+        demoClass: newDemoClass,
+      });
+    }
+  } catch (err) {
+    console.log("Error in booking or updating demo class", err);
+    res
+      .status(500)
+      .json({
+        message: "An error occurred while booking or updating the demo class",
+      });
+  }
+};
+
+const getKidData = async (req, res) => {
+  try {
+    const { kidId } = req.params;
+    const kidData = await kidModel.findById(kidId);
+
+    if (!kidData) {
+      return res.status(404).json({ message: "Kid not found" });
+    }
+
+    return res.status(200).json({ data: kidData });
+  } catch (err) {
+    console.log("Error fetching kid data:", err);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const editKidData = async (req, res) => {
+  try {
+    const { kidId } = req.params;
+    const updateData = req.body;
+
+    const updatedKid = await kidModel.findByIdAndUpdate(kidId, updateData, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!updatedKid) {
+      return res.status(404).json({ message: "Kid not found" });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Kid data updated successfully", data: updatedKid });
+  } catch (err) {
+    console.log("Error updating kid data:", err);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const getParentData = async (req, res) => {
+  try {
+    const { parentId } = req.params;
+    const parentData = await parentModel
+      .findById(parentId)
+      .populate("kids.kidId");
+
+    if (!parentData) {
+      return res.status(404).json({ message: "Parent not found" });
+    }
+
+    return res.status(200).json({ data: parentData });
+  } catch (err) {
+    console.log("Error fetching parent data:", err);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const editParentData = async (req, res) => {
+  try {
+    const { parentId } = req.params;
+    const updateData = req.body;
+
+    const updatedParent = await parentModel.findByIdAndUpdate(
+      parentId,
+      updateData,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!updatedParent) {
+      return res.status(404).json({ message: "Parent not found" });
+    }
+
+    return res
+      .status(200)
+      .json({
+        message: "Parent data updated successfully",
+        data: updatedParent,
+      });
+  } catch (err) {
+    console.log("Error updating parent data:", err);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const parentAddNewKid = async (req, res) => {
+  try {
+    const { parentId } = req.params;
+    const { kidsName, age, gender, intention, schoolName, address, pincode } =
+      req.body;
+    const chessId = generateChessId();
+    const kidPin = generateOTP();
+
+    if (
+      !kidsName ||
+      !age ||
+      !gender ||
+      !intention ||
+      !schoolName ||
+      !address ||
+      !pincode
+    ) {
+      return res
+        .status(400)
+        .json({ message: "Please provide all the required fields" });
+    }
+
+    const newKid = new kidModel({
+      kidsName,
+      age,
+      gender,
+      intention,
+      schoolName,
+      address,
+      pincode,
+      parentId,
+      chessId,
+      kidPin,
+    });
+
+    await newKid.save();
+
+    res.status(201).json({
+      message: "Kid added successfully",
+      kid: newKid,
+    });
+  } catch (err) {
+    console.log("Error in adding kid data", err);
+    res
+      .status(500)
+      .json({ message: "An error occurred while adding the kid data" });
+  }
+};
+
+const getParentProfileData = async (req, res) => {
+  try {
+    const { parentId } = req.params;
+    const parentData = await parentModel.findOne({ _id: parentId }).populate('kids.kidId');
+
+    if (!parentData) {
+      return res.status(404).json({ message: "Parent not found" });
+    }
+
+    return res.status(200).json({
+      message: "Parent data fetched successfully",
+      parent: parentData,
+    });
+
+  } catch (err) {
+    console.log("Error in get parent data", err);
+    return res.status(500).json({ message: "An error occurred while fetching parent data" });
+  }
+};
 
 
 module.exports = {
@@ -309,5 +522,13 @@ module.exports = {
   parentBookDemoClass,
   getKidsDataList,
   getChildData,
-  changeChildPin
+  changeChildPin,
+  getDemoClassDetails,
+  getKidData,
+  editKidData,
+  getParentData,
+  editParentData,
+  parentBookNewDemoClass,
+  parentAddNewKid,
+  getParentProfileData,
 };

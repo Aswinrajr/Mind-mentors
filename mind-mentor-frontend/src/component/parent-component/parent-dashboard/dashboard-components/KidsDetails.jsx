@@ -1,40 +1,21 @@
-import {  Book, Calendar, ChevronRight, Sparkles, Star, Trophy, User, UserPlus } from "lucide-react";
-import { useEffect, useState } from "react";
-import { gettingKidsData } from "../../../../api/service/parent/ParentService";
+/* eslint-disable react/prop-types */
+import {
+  Award,
+  Book,
+  Calendar,
+  ChevronRight,
+  Sparkles,
+  Star,
+  Trophy,
+  User,
+  UserPlus,
+} from "lucide-react";
+
 import { useNavigate } from "react-router-dom";
 
-const KidsDetails = () => {
+const KidsDetails = ({kids}) => {
   const navigate = useNavigate();
-  const [kids, setKids] = useState([]);
-  const [loading, setLoading] = useState(true); 
-  const parentId = localStorage.getItem("parentId");
-  console.log("parent id", parentId);
-
-  useEffect(() => {
-    const fetchKidsData = async () => {
-      try {
-        const response = await gettingKidsData(parentId);
-        console.log("response in fetch kids data", response?.data?.kidsData);
-        if (response.status === 200) {
-          setKids(response?.data?.kidsData);
-        }
-      } catch (error) {
-        console.error("Error fetching kids data", error);
-      } finally {
-        setLoading(false); // Set loading to false once the data is fetched
-      }
-    };
-    fetchKidsData();
-  }, [parentId]);
-
-  if (loading) {
-    // Show a loader while the data is being fetched
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="loader">Loading...</div> {/* Customize this loader */}
-      </div>
-    );
-  }
+  
 
   return (
     <div className="p-8 bg-gradient-to-br from-blue-50 via-white to-purple-50 min-h-screen">
@@ -144,6 +125,7 @@ const KidsDetails = () => {
                   </div>
                 </div>
 
+            
                 <div className="space-y-3">
                   <button
                     onClick={() =>
@@ -153,7 +135,11 @@ const KidsDetails = () => {
                   >
                     <Calendar className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
                     View Progress
-                    <ChevronRight className="w-4 h-4 ml-2" />
+                    <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                  <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 flex items-center justify-center group">
+                    <Award className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                    Edit Profile
                   </button>
                 </div>
               </div>
@@ -161,9 +147,36 @@ const KidsDetails = () => {
           ))}
         </div>
 
-        {kids.length === 0 && !loading && (
-          <div className="flex justify-center items-center text-xl font-semibold text-gray-600">
-            No child data available.
+        {kids && kids?.length === 0 && (
+          <div className="relative bg-white rounded-3xl shadow-xl p-10 overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500"></div>
+            <div className="absolute -right-6 -top-6 w-24 h-24 bg-blue-100 rounded-full opacity-50"></div>
+            <div className="absolute -left-6 -bottom-6 w-24 h-24 bg-purple-100 rounded-full opacity-50"></div>
+
+            <div className="relative flex flex-col items-center justify-center min-h-[300px]">
+              <div className="bg-gradient-to-br from-blue-100 to-purple-100 p-6 rounded-full mb-6 group hover:scale-110 transition-transform duration-300">
+                <UserPlus className="w-12 h-12 text-blue-600 group-hover:rotate-12 transition-transform" />
+              </div>
+
+              <h3 className="text-2xl font-bold text-gray-900 mb-3 text-center">
+                Begin Your Childs Chess Journey
+              </h3>
+
+              <p className="text-gray-600 text-center mb-8 max-w-md text-base">
+                Transform your childs potential into mastery. Start their chess
+                adventure today and watch them develop strategic thinking,
+                confidence, and excellence.
+              </p>
+
+              <button
+                onClick={() => navigate("/parent/add-kid")}
+                className="inline-flex items-center px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium shadow-xl transition-all duration-300 hover:shadow-2xl active:transform active:scale-95 group"
+              >
+                <UserPlus className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
+                Add Your First Champion
+                <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </div>
         )}
       </div>

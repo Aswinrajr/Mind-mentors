@@ -11,7 +11,7 @@ const MenuGrid = () => {
       title: "Demo / Class",
       subtitle: "Requests",
       bgColor: "bg-pink-500",
-      route: "/parent/kid/demo-class",
+      route: `/parent/kid/demo-class/${id}`,
     },
     {
       id: id,

@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import Sidebar from "../component/parent-component/parent-dashboard/layout/SideBar";
-import Topbar from "../component/parent-component/parent-dashboard/layout/Topbar";
-import KidsDetails from "../component/parent-component/parent-dashboard/dashboard-components/KidsDetails";
-import ChessLoader from '../landingPage/loader/ChessLoader';  
+import ChessLoader from '../../landingPage/loader/ChessLoader';
+import Sidebar from '../../component/parent-component/parent-dashboard/layout/SideBar';
+import Topbar from '../../component/parent-component/parent-dashboard/layout/Topbar';
+import SheduleDemoClass from '../../component/parent-component/parent-dashboard/dashboard-components/SheduleDemoClass';
 
-const ParentKidsDetailsPage = () => {
+const ParentReqNewDemoClass = () => {
   const [loading, setLoading] = useState(true);  
+ 
 
   
   useEffect(() => {
@@ -31,7 +32,7 @@ const ParentKidsDetailsPage = () => {
             <div className="flex-1 p-8 overflow-hidden">
               <div className="flex flex-col lg:flex-row gap-8 h-full">
                 <div className="lg:w-full h-full">
-                  <KidsDetails className="h-full" />  
+                  <SheduleDemoClass className="h-full" />  
                 </div>
               </div>
             </div>
@@ -42,4 +43,4 @@ const ParentKidsDetailsPage = () => {
   );
 };
 
-export default ParentKidsDetailsPage;
+export default ParentReqNewDemoClass;
